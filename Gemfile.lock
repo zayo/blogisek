@@ -1,4 +1,10 @@
 GIT
+  remote: git://github.com/EppO/rolify.git
+  revision: c9ef3689418642437d0efdad600fb3c64c7d407d
+  specs:
+    rolify (5.0.0)
+
+GIT
   remote: git://github.com/cavi21/letter_opener.git
   revision: 3be81cb10e4c71f79278db22aa5e10aca64418f0
   specs:
@@ -153,7 +159,6 @@ GEM
     rdoc (4.2.0)
     responders (2.1.0)
       railties (>= 4.2.0, < 5)
-    rolify (5.0.0)
     sass (3.4.19)
     sass-rails (5.0.4)
       railties (>= 4.0.0, < 5.0)
@@ -227,7 +232,7 @@ DEPENDENCIES
   pry
   rails (= 4.2.5)
   rails_12factor
-  rolify
+  rolify!
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)
   seed_dump
