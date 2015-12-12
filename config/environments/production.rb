@@ -83,7 +83,7 @@ Rails.application.configure do
     :user_name => ENV["MAILGUN_USERNAME"],
     :password  => ENV["MAILGUN_PASSWORD"]
   }
-  config.action_mailer.default_url_options   = { :host => 'sandbox6a6b488140e9456786d4830f40466ddb.mailgun.org' }
+  config.action_mailer.default_url_options   = { :host => 'immense-badlands-8590.herokuapp.com' }
   config.action_mailer.delivery_method       = :smtp
   config.action_mailer.perform_deliveries    = true
   config.action_mailer.raise_delivery_errors = false
