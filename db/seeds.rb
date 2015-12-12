@@ -8,26 +8,28 @@
 
 admin = User.create!([
                        {
-                         email: "admin@admin.com",
-                         encrypted_password: "$2a$10$7oS5HVnYrtqrmI34Uz/w1utO5cYb7H4zA0LLBA0HxkDhguGZSDTDq",
-                         reset_password_token: nil,
-                         reset_password_sent_at: nil,
-                         remember_created_at: nil,
-                         sign_in_count: 1,
-                         current_sign_in_at: "2015-12-12 17:20:29",
-                         last_sign_in_at: "2015-12-12 17:20:29",
-                         current_sign_in_ip: "::1",
-                         last_sign_in_ip: "::1",
-                         confirmation_token: "HdJf6NxaeyJACXieAqxs",
-                         confirmed_at: "2015-12-12 17:19:17",
-                         confirmation_sent_at: "2015-12-12 17:17:30",
-                         unconfirmed_email: nil,
-                         avatar_file_name: nil,
-                         avatar_content_type: nil,
-                         avatar_file_size: nil,
-                         avatar_updated_at: nil
+                         email:                  "admin@admin.com",
+                         password:               "adminadmin",
                        }
                      ])
+admin.update!({
+               reset_password_token:   nil,
+               reset_password_sent_at: nil,
+               remember_created_at:    nil,
+               sign_in_count:          1,
+               current_sign_in_at:     "2015-12-12 17:20:29",
+               last_sign_in_at:        "2015-12-12 17:20:29",
+               current_sign_in_ip:     "::1",
+               last_sign_in_ip:        "::1",
+               confirmation_token:     "HdJf6NxaeyJACXieAqxs",
+               confirmed_at:           "2015-12-12 17:19:17",
+               confirmation_sent_at:   "2015-12-12 17:17:30",
+               unconfirmed_email:      nil,
+               avatar_file_name:       nil,
+               avatar_content_type:    nil,
+               avatar_file_size:       nil,
+               avatar_updated_at:      nil
+             })
 admin.add_role :admin
 
 =begin
