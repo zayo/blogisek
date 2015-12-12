@@ -6,8 +6,7 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = User.create!([{ email: "admin@admin.com", password: "adminadmin" }])
-admin.update!({ reset_password_token: nil, unconfirmed_email: nil })
+admin = User.create!([{ email: "admin@admin.com", password: "adminadmin", reset_password_token: nil, unconfirmed_email: nil, confirmed_at: "2015-12-12 17:19:17" }]);
 admin.add_role :admin
 
 =begin
