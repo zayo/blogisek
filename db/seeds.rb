@@ -16,3 +16,6 @@ Post.create({ user_id: user2.id, title: 'Nazev2', description: 'simple test of p
 =end
 
 
+Role.create!([
+  {name: "admin", resource_id: nil, resource_type: nil}
+])
