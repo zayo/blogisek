@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
 
-  resources :posts
+  resources :posts do
+    resources :post_comments, only: [:create, :destroy] do
+      resources :comment_comments, only: [:create, :destroy]
+    end
+  end
 
   root 'posts#index'
 

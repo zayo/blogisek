@@ -1,0 +1,12 @@
+= form_for ([@post, @post_comment]), html: { class: "form form-horizontal post_comment" } do |f|
+  .form-group
+    = f.label :name, :class => 'control-label'
+    .controls
+      = f.text_field :name, :class => 'form-control'
+    /= error_span(@post_comment[:name])
+  .form-group
+    = f.label :message, :class => 'control-label'
+    .controls
+      = f.text_field :message, :class => 'form-control'
+    /= error_span(@post_comment[:message])
+  = f.submit 'Save post comment', :class => 'btn btn-primary'

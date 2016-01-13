@@ -5,6 +5,8 @@ class Ability
 
     if user.nil?
       can :read, Post
+      can :read, PostComment
+      can :read, CommentComment
     elsif user.has_role? :admin
       can :manage, :all
     else
