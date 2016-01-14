@@ -5,7 +5,7 @@ class Ability
 
     if user.nil?
       cannot :manage, :all
-      can [:read], Post, :is_private => false
+      can :read, Post, :is_private => false
       can [:read, :create], Pcomment
       can [:read, :create], Ccomment
     elsif user.has_role? :admin
