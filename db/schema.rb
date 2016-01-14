@@ -13,21 +13,21 @@
 
 ActiveRecord::Schema.define(version: 20160113181636) do
 
-  create_table "comment_comments", force: :cascade do |t|
+  create_table "ccomments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
-    t.integer  "likes",           default: 0
-    t.integer  "dislikes",        default: 0
+    t.integer  "likes",       default: 0
+    t.integer  "dislikes",    default: 0
     t.integer  "user_id"
-    t.integer  "post_comment_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.integer  "pcomment_id"
+    t.datetime "created_at",              null: false
+    t.datetime "updated_at",              null: false
   end
 
-  add_index "comment_comments", ["post_comment_id"], name: "index_comment_comments_on_post_comment_id"
-  add_index "comment_comments", ["user_id"], name: "index_comment_comments_on_user_id"
+  add_index "ccomments", ["pcomment_id"], name: "index_ccomments_on_pcomment_id"
+  add_index "ccomments", ["user_id"], name: "index_ccomments_on_user_id"
 
-  create_table "post_comments", force: :cascade do |t|
+  create_table "pcomments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
     t.integer  "likes",      default: 0
@@ -38,8 +38,8 @@ ActiveRecord::Schema.define(version: 20160113181636) do
     t.datetime "updated_at",             null: false
   end
 
-  add_index "post_comments", ["post_id"], name: "index_post_comments_on_post_id"
-  add_index "post_comments", ["user_id"], name: "index_post_comments_on_user_id"
+  add_index "pcomments", ["post_id"], name: "index_pcomments_on_post_id"
+  add_index "pcomments", ["user_id"], name: "index_pcomments_on_user_id"
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"

@@ -1,0 +1,16 @@
+- model_class = Pcomment
+- if !pcomment.id.nil?
+  p
+    ' name:
+    =' pcomment.name
+    ' likes:
+    =' pcomment.likes
+    ' dislikes:
+    =' pcomment.dislikes
+    - if can? :destroy, pcomment
+      = link_to t('.destroy', :default => t("helpers.links.destroy")), post_pcomment_path(@post, pcomment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+    br
+    = pcomment.message
+    = render :partial => 'ccomments/ccomment', :collection => pcomment.ccomments
+    = render 'ccomments/form'
+  br

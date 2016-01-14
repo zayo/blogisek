@@ -16,9 +16,9 @@ p
   = @post.description
 p
   ' Comments
-  = render 'post_comments/form'
+  = render 'pcomments/form'
   br
-  = render :partial => :'post_comments/post_comment', :collection => @post.post_comments
+  = render :partial => :'pcomments/pcomment', :collection => @post.pcomments
 
 = link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn btn-default'
 '

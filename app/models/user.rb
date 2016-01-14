@@ -9,8 +9,8 @@ class User < ActiveRecord::Base
   validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   has_many :posts, :dependent => :destroy
-  has_many :post_comments, :dependent => :destroy
-  has_many :comment_comments, :dependent => :destroy
+  has_many :pcomments, :dependent => :destroy
+  has_many :ccomments, :dependent => :destroy
 
   accepts_nested_attributes_for :posts
 end

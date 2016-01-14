@@ -1,6 +1,6 @@
-class CreatePostComments < ActiveRecord::Migration
+class CreatePcomments < ActiveRecord::Migration
   def change
-    create_table :post_comments do |t|
+    create_table :pcomments do |t|
       t.string :name
       t.text :message
       t.integer :likes, :default => 0

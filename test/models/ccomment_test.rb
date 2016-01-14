@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PostCommentControllerTest < ActionController::TestCase
+class CcommentTest < ActiveSupport::TestCase
   # test "the truth" do
   #   assert true
   # end

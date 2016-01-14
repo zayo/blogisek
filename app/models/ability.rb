@@ -5,18 +5,18 @@ class Ability
 
     if user.nil?
       can [:read, :create], Post
-      can [:read, :create], PostComment
-      can [:read, :create], CommentComment
+      can [:read, :create], Pcomment
+      can [:read, :create], Ccomment
     elsif user.has_role? :admin
       can :manage, :all
     else
       can [:read, :create], Post
-      can [:read, :create], PostComment
-      can [:read, :create], CommentComment
+      can [:read, :create], Pcomment
+      can [:read, :create], Ccomment
 
       can [:update, :destroy], Post, :user_id => user.id
-      can [:destroy], PostComment, :user_id => user.id
-      can [:destroy], CommentComment, :user_id => user.id
+      can [:destroy], Pcomment, :user_id => user.id
+      can [:destroy], Ccomment, :user_id => user.id
     end
 
 

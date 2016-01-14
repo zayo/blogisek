@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
 
   resources :posts do
-    resources :post_comments, only: [:create, :destroy] do
-      resources :comment_comments, only: [:create, :destroy]
+    resources :pcomments, only: [:create, :destroy] do
+      resources :ccomments, only: [:create, :destroy]
     end
   end
 
