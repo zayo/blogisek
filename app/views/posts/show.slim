@@ -16,9 +16,9 @@ p
   = @post.description
 p
   ' Comments
-  = render 'pcomments/form'
+  = render 'pcomments/form', :post => @post
   br
-  = render :partial => :'pcomments/pcomment', :collection => @post.pcomments
+  = render @post.pcomments, :post => @post
 
 = link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn btn-default'
 '
@@ -27,4 +27,7 @@ p
   '
 - if can? :destroy, @post
   = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+  '
+- if can? :read, @post
+  = link_to t('.show', :default => t("helpers.links.show")), post_path(@post), :class => 'btn btn-default btn-xs'
 

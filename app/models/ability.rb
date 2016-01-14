@@ -4,7 +4,7 @@ class Ability
   def initialize(user)
 
     if user.nil?
-      can [:read, :create], Post
+      can [:read], Post
       can [:read, :create], Pcomment
       can [:read, :create], Ccomment
     elsif user.has_role? :admin

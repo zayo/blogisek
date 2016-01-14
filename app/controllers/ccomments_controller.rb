@@ -6,8 +6,8 @@ class CcommentsController < ApplicationController
   end
 
   def create
-    @post            = Post.find(params[:post_id])
-    @pcomment    = @post.pcomments.find(params[:comment_id])
+    @post     = Post.find(params[:post_id])
+    @pcomment = @post.pcomments.find(params[:pcomment_id])
     @ccomment = @pcomment.ccomments.build(post_params)
 
     if not current_user.nil?
@@ -19,8 +19,8 @@ class CcommentsController < ApplicationController
   end
 
   def destroy
-    @post            = Post.find(params[:post_id])
-    @pcomment    = @post.pcomments.find(params[:comment_id])
+    @post     = Post.find(params[:post_id])
+    @pcomment = @post.pcomments.find(params[:pcomment_id])
     @ccomment = @pcomment.ccomments.find(params[:id])
     @ccomment.destroy
     redirect_to post_path(@post), :notice => 'Ccomment was deleted'
@@ -29,7 +29,7 @@ class CcommentsController < ApplicationController
   private
 
   def post_params
-    params.require(:ccomment).permit(:comment_id, :name, :message)
+    params.require(:ccomment).permit(:post_id, :pcomment_id, :name, :message)
   end
 
 end

@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 20160113181636) do
   create_table "ccomments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
-    t.integer  "likes",       default: 0
-    t.integer  "dislikes",    default: 0
+    t.integer  "likes",           default: 0
+    t.integer  "dislikes",        default: 0
     t.integer  "user_id"
     t.integer  "pcomment_id"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "ccomments", ["pcomment_id"], name: "index_ccomments_on_pcomment_id"

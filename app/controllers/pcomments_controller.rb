@@ -6,7 +6,7 @@ class PcommentsController < ApplicationController
   end
 
   def create
-    @post         = Post.find(params[:post_id])
+    @post     = Post.find(params[:post_id])
     @pcomment = @post.pcomments.build(post_params)
 
     if not current_user.nil?
@@ -18,7 +18,7 @@ class PcommentsController < ApplicationController
   end
 
   def destroy
-    @post         = Post.find(params[:post_id])
+    @post     = Post.find(params[:post_id])
     @pcomment = @post.pcomments.find(params[:id])
     @pcomment.destroy
     redirect_to post_path(@post), :notice => 'Pcomment was deleted'

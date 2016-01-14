@@ -1,4 +1,4 @@
-= form_for ([@post.pcomments[0], @post.pcomments[0].ccomments.build]), html: { class: "form form-horizontal ccomment" } do |f|
+= form_for ([post, pcomment, pcomment.ccomments.build]), html: { class: "form form-horizontal ccomment" } do |f|
   .form-group
     = f.label :name, :class => 'control-label'
     .controls

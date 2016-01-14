@@ -11,6 +11,6 @@
       = link_to t('.destroy', :default => t("helpers.links.destroy")), post_pcomment_path(@post, pcomment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
     br
     = pcomment.message
-    = render :partial => 'ccomments/ccomment', :collection => pcomment.ccomments
-    = render 'ccomments/form'
+    = render  pcomment.ccomments, :post => post, :pcomment => pcomment
+    = render 'ccomments/form', :post => post, :pcomment => pcomment
   br
