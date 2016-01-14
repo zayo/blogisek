@@ -9,6 +9,9 @@
 admin = User.create!({ email: "admin@admin.com", password: "adminadmin", reset_password_token: nil, unconfirmed_email: nil, confirmed_at: "2015-12-12 17:19:17" });
 admin.add_role :admin
 
+user = User.create!({ email: "test@test.com", password: "testtest", reset_password_token: nil, unconfirmed_email: nil, confirmed_at: "2015-12-12 17:19:17" });
+user.add_role :user
+
 =begin
 User.first_or_create([{ email: 'kokot1@velky.com', password: 'kokotiny' },{ email: 'kokot2@velky.com', password: 'kokotiny' }])
 Post.create({ user_id: user1.id, title: 'Nazev1', description: 'simple test of post' })
