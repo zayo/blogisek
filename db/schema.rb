@@ -11,17 +11,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160113181636) do
+ActiveRecord::Schema.define(version: 20160114221533) do
 
   create_table "ccomments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
-    t.integer  "likes",           default: 0
-    t.integer  "dislikes",        default: 0
+    t.integer  "likes",       default: 0
+    t.integer  "dislikes",    default: 0
     t.integer  "user_id"
     t.integer  "pcomment_id"
-    t.datetime "created_at",                  null: false
-    t.datetime "updated_at",                  null: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.boolean  "approved",    default: true
   end
 
   add_index "ccomments", ["pcomment_id"], name: "index_ccomments_on_pcomment_id"
@@ -34,8 +35,9 @@ ActiveRecord::Schema.define(version: 20160113181636) do
     t.integer  "dislikes",   default: 0
     t.integer  "user_id"
     t.integer  "post_id"
-    t.datetime "created_at",             null: false
-    t.datetime "updated_at",             null: false
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.boolean  "approved",   default: true
   end
 
   add_index "pcomments", ["post_id"], name: "index_pcomments_on_post_id"
@@ -45,8 +47,10 @@ ActiveRecord::Schema.define(version: 20160113181636) do
     t.integer  "user_id"
     t.string   "title"
     t.text     "description"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
+    t.boolean  "is_private",  default: false
+    t.integer  "options",     default: 0
   end
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"

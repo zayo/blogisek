@@ -1,33 +1,37 @@
 - model_class = Post
-div class="page-header"
+- if can? :read, @post
+  div class="page-header"
   h1=t '.title', :default => model_class.model_name.human.titleize
 
-p
-  strong= model_class.human_attribute_name(:user) + ':'
-  br
-  = @post.user_name
-p
-  strong= model_class.human_attribute_name(:title) + ':'
-  br
-  = @post.title
-p
-  strong= model_class.human_attribute_name(:description) + ':'
-  br
-  = @post.description
-p
-  ' Comments
-  = render 'pcomments/form', :post => @post
-  br
-  = render @post.pcomments, :post => @post
+  p
+    strong= model_class.human_attribute_name(:user) + ':'
+    br
+    = @post.user_name
+  p
+    strong= model_class.human_attribute_name(:title) + ':'
+    br
+    = @post.title
+  p
+    strong= model_class.human_attribute_name(:description) + ':'
+    br
+    = @post.description
+  p
+    ' Comments
+    - if @post.comments_disabled?
+      ' were disabled by author.
+    - else
+      = render 'pcomments/form', :post => @post
+      br
+      = render @post.pcomments, :post => @post
 
-= link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn btn-default'
-'
-- if can? :update, @post
-  = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn btn-default'
+
+  = link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn btn-default'
   '
-- if can? :destroy, @post
-  = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
-  '
-- if can? :read, @post
-  = link_to t('.show', :default => t("helpers.links.show")), post_path(@post), :class => 'btn btn-default btn-xs'
+  - if can? :update, @post
+    = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn btn-default'
+    '
+  - if can? :destroy, @post
+    = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
+- else
+  h1 You don't have access to view this post...
 

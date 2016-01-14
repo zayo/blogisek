@@ -13,6 +13,14 @@
     .controls
       = f.text_field :description, :class => 'form-control'
     = error_span(@post[:description])
+  .form-group
+    = f.label :is_private, :class => 'control-label'
+    .controls
+      = f.check_box :is_private, :class => 'form-control'
+  .form-group
+    = f.label :options, :class => 'control-label'
+    .controls
+      = f.select :options, Post.options.keys.map { |w| [w.humanize, w] }, :class => 'form-control'
   /.form-group
     = f.label :tags_string, :class => 'control-label', :id => 'post_tags_string'
     .controls

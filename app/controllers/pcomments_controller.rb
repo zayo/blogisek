@@ -6,15 +6,25 @@ class PcommentsController < ApplicationController
   end
 
   def create
-    @post     = Post.find(params[:post_id])
-    @pcomment = @post.pcomments.build(post_params)
+    @post = Post.find(params[:post_id])
 
-    if not current_user.nil?
-      @pcomment.user_id = current_user.id
+    if @post.comments_disabled?
+      redirect_to post_path(@post), alert: 'Comments not allowed here'
+    else
+      @pcomment          = @post.pcomments.build(post_params)
+      @pcomment.approved = !@post.comments_approval?
+
+      unless current_user.nil?
+        @pcomment.user_id = current_user.id
+        unless @pcomment.approved
+          @pcomment.approved = (current_user == @post.user)
+        end
+      end
+
+      approval = !@pcomment.approved ? ' waiting for approval' : ' saved'
+      msg = @pcomment.save ? 'Pcomment' + approval : 'Unable to save pcomment: ' + @pcomment.errors.full_messages.join('. ')
+      redirect_to post_path(@post), notice: msg
     end
-
-    msg = @pcomment.save ? 'Post comment saved' : 'Unable to save post comment: ' + @pcomment.errors.full_messages.join('. ')
-    redirect_to post_path(@post), notice: msg
   end
 
   def destroy

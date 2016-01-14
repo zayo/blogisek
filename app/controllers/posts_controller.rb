@@ -1,10 +1,15 @@
 class PostsController < ApplicationController
+
   before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.eager_load(:user)
+    if !current_user.nil?
+      @posts = Post.eager_load(:user)
+    else
+      @posts = Post.where('is_private <> ?', true).eager_load(:user)
+    end
   end
 
   # GET /posts/1
@@ -56,10 +61,12 @@ class PostsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_post
     @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    @post = {}
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:user_id, :title, :description)
+    params.require(:post).permit(:user_id, :title, :description, :is_private, :options)
   end
 end
