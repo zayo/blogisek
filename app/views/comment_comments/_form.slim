@@ -1,8 +1,8 @@
-= form_for post_post_comment_comment_comments_path(@post, @post.post_comments, @comment_comment), html: { class: "form form-horizontal comment_comment" } do |f|
+= form_for ([@post, @post.post_comments, @post.post_comments.comment_comments.build]), html: { class: "form form-horizontal comment_comment" } do |f|
   .form-group
     = f.label :name, :class => 'control-label'
     .controls
-      = f.text_field :name, :class => 'form-control'
+      = f.text_field :name, :class => 'form-control', :readonly => !current_user.nil?, :value => current_user ? current_user.email : ''
     /= error_span(@comment_comment[:name])
   .form-group
     = f.label :message, :class => 'control-label'

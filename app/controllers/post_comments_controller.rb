@@ -5,32 +5,28 @@ class PostCommentsController < ApplicationController
   def show
   end
 
-  def new
-    @post = Post.find(params[:post_id])
-    @post_comment         = @post.post_comments.build
-  end
-
   def create
-    @post = Post.find(params[:post_id])
-    @post_comment         = @post.post_comments.build(post_params)
+    @post         = Post.find(params[:post_id])
+    @post_comment = @post.post_comments.build(post_params)
 
     if not current_user.nil?
-      @comment.user_id = current_user.id
+      @post_comment.user_id = current_user.id
     end
 
-    if @post_comment.save
-      #redirect_to post_path @post, notice: 'Post comment was successfully created.'
-    else
-      #render :new
-    end
+    msg = @post_comment.save ? 'Post comment saved' : 'Unable to save post comment: ' + @post_comment.errors.full_messages.join('. ')
+    redirect_to post_path(@post), notice: msg
   end
 
   def destroy
+    @post         = Post.find(params[:post_id])
+    @post_comment = @post.post_comments.find(params[:id])
+    @post_comment.destroy
+    redirect_to post_path(@post), :notice => 'Post comment was deleted'
   end
 
   private
 
   def post_params
-    params.require(:post_comment).permit(:name, :message)
+    params.require(:post_comment).permit(:post_id, :name, :message)
   end
 end

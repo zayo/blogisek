@@ -16,12 +16,12 @@ ActiveRecord::Schema.define(version: 20160113181636) do
   create_table "comment_comments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
-    t.integer  "likes"
-    t.integer  "dislikes"
+    t.integer  "likes",           default: 0
+    t.integer  "dislikes",        default: 0
     t.integer  "user_id"
     t.integer  "post_comment_id"
-    t.datetime "created_at",      null: false
-    t.datetime "updated_at",      null: false
+    t.datetime "created_at",                  null: false
+    t.datetime "updated_at",                  null: false
   end
 
   add_index "comment_comments", ["post_comment_id"], name: "index_comment_comments_on_post_comment_id"
@@ -30,12 +30,12 @@ ActiveRecord::Schema.define(version: 20160113181636) do
   create_table "post_comments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
-    t.integer  "likes"
-    t.integer  "dislikes"
+    t.integer  "likes",      default: 0
+    t.integer  "dislikes",   default: 0
     t.integer  "user_id"
     t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
   end
 
   add_index "post_comments", ["post_id"], name: "index_post_comments_on_post_id"
