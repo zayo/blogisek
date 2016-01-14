@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36df316a-28a0-4e0e-b740-e0bda7b3da76" name="Default" comment="">
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/comment_comments/_form.html.slim" afterPath="$PROJECT_DIR$/app/views/comment_comments/_form.slim" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/post_comments/_form.html.slim" afterPath="$PROJECT_DIR$/app/views/post_comments/_form.slim" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/app/views/post_comments/_post_comment.html.slim" afterPath="$PROJECT_DIR$/app/views/post_comments/_post_comment.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/comment_comments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/comment_comments_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/post_comments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/post_comments_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ability.rb" afterPath="$PROJECT_DIR$/app/models/ability.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/posts/show.slim" afterPath="$PROJECT_DIR$/app/views/posts/show.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20160113153105_create_post_comments.rb" afterPath="$PROJECT_DIR$/db/migrate/20160113153105_create_post_comments.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/migrate/20160113181636_create_comment_comments.rb" afterPath="$PROJECT_DIR$/db/migrate/20160113181636_create_comment_comments.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/seeds.rb" afterPath="$PROJECT_DIR$/db/seeds.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/post_comments/_form.slim" afterPath="$PROJECT_DIR$/app/views/post_comments/_form.slim" />
     </list>
     <ignored path="blog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -69,20 +58,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_form.slim" pinned="false" current-in-tab="false">
+      <file leaf-file-name="_form.slim" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/views/post_comments/_form.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-0.0">
-              <caret line="0" column="43" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_form.slim" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_form.slim" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/comment_comments/_form.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
+            <state vertical-scroll-proportion="-0.0">
               <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
               <folding />
             </state>
@@ -1170,18 +1159,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/views/post_comments/_form.slim">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.0">
-          <caret line="0" column="43" selection-start-line="0" selection-start-column="43" selection-end-line="0" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/views/comment_comments/_form.slim">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="38" selection-start-line="0" selection-start-column="38" selection-end-line="0" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/views/post_comments/_form.slim">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="2" selection-start-line="0" selection-start-column="2" selection-end-line="0" selection-end-column="2" />
           <folding />
         </state>
       </provider>

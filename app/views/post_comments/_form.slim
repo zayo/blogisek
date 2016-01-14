@@ -1,4 +1,4 @@
-= nested_form_for ([@post, @post.post_comments.build]), html: { class: "form form-horizontal post_comment" } do |f|
+= form_for ([@post, @post.post_comments.build]), html: { class: "form form-horizontal post_comment" } do |f|
   .form-group
     = f.label :name, :class => 'control-label'
     .controls
