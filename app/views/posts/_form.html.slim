@@ -13,6 +13,11 @@
     .controls
       = f.text_field :description, :class => 'form-control'
     = error_span(@post[:description])
+  .form-group
+    = f.label :tags_string, :class => 'control-label', :id => 'post_tags_string'
+    .controls
+      = f.text_field :tags_string, :class => 'form-control'
+    = error_span(@post[:tags_string])
   = f.submit nil, :class => 'btn btn-primary'
   '
   = link_to t('.cancel', :default => t("helpers.links.cancel")), posts_path, :class => 'btn'

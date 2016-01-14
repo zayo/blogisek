@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151212170334) do
+ActiveRecord::Schema.define(version: 20160113145923) do
 
   create_table "posts", force: :cascade do |t|
     t.integer  "user_id"
@@ -23,6 +23,14 @@ ActiveRecord::Schema.define(version: 20151212170334) do
 
   add_index "posts", ["user_id"], name: "index_posts_on_user_id"
 
+  create_table "posts_tags", id: false, force: :cascade do |t|
+    t.integer "post_id"
+    t.integer "tag_id"
+  end
+
+  add_index "posts_tags", ["post_id"], name: "index_posts_tags_on_post_id"
+  add_index "posts_tags", ["tag_id"], name: "index_posts_tags_on_tag_id"
+
   create_table "roles", force: :cascade do |t|
     t.string   "name"
     t.integer  "resource_id"
@@ -33,6 +41,13 @@ ActiveRecord::Schema.define(version: 20151212170334) do
 
   add_index "roles", ["name", "resource_type", "resource_id"], name: "index_roles_on_name_and_resource_type_and_resource_id"
   add_index "roles", ["name"], name: "index_roles_on_name"
+
+  create_table "tags", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "karma"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
