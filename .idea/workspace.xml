@@ -1,19 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="36df316a-28a0-4e0e-b740-e0bda7b3da76" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/tag.rb" afterPath="$PROJECT_DIR$/app/models/tag.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/user.rb" afterPath="$PROJECT_DIR$/app/models/user.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/ccomments/_ccomment.slim" afterPath="$PROJECT_DIR$/app/views/ccomments/_ccomment.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" afterPath="$PROJECT_DIR$/app/views/devise/registrations/edit.html.erb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pcomments/_pcomment.slim" afterPath="$PROJECT_DIR$/app/views/pcomments/_pcomment.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/posts/_form.slim" afterPath="$PROJECT_DIR$/app/views/posts/_form.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/posts/index.slim" afterPath="$PROJECT_DIR$/app/views/posts/index.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/posts/show.slim" afterPath="$PROJECT_DIR$/app/views/posts/show.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
-    </list>
+    <list default="true" id="36df316a-28a0-4e0e-b740-e0bda7b3da76" name="Default" comment="" />
     <ignored path="blog.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path="$PROJECT_DIR$/.bundle/" />
