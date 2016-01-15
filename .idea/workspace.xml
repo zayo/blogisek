@@ -2,20 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36df316a-28a0-4e0e-b740-e0bda7b3da76" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/approvals_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/approvals_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/ccomments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/ccomments_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pcomments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pcomments_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/posts_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ability.rb" afterPath="$PROJECT_DIR$/app/models/ability.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/ccomment.rb" afterPath="$PROJECT_DIR$/app/models/ccomment.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/pcomment.rb" afterPath="$PROJECT_DIR$/app/models/pcomment.rb" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/helpers/posts_helper.rb" afterPath="$PROJECT_DIR$/app/helpers/posts_helper.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/models/post.rb" afterPath="$PROJECT_DIR$/app/models/post.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/approvals/index.slim" afterPath="$PROJECT_DIR$/app/views/approvals/index.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/ccomments/_ccomment.slim" afterPath="$PROJECT_DIR$/app/views/ccomments/_ccomment.slim" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/pcomments/_pcomment.slim" afterPath="$PROJECT_DIR$/app/views/pcomments/_pcomment.slim" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/posts/_form.slim" afterPath="$PROJECT_DIR$/app/views/posts/_form.slim" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/views/posts/index.slim" afterPath="$PROJECT_DIR$/app/views/posts/index.slim" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/routes.rb" afterPath="$PROJECT_DIR$/config/routes.rb" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db/schema.rb" afterPath="$PROJECT_DIR$/db/schema.rb" />
     </list>
     <ignored path="blog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -42,11 +34,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="posts_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="posts_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="17" column="80" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
+            <state vertical-scroll-proportion="0.35276073">
+              <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -76,10 +68,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="_ccomment.slim" pinned="false" current-in-tab="true">
+      <file leaf-file-name="_ccomment.slim" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/views/ccomments/_ccomment.slim">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.23584905">
+            <state vertical-scroll-proportion="-9.375">
               <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
               <folding />
             </state>
@@ -205,11 +197,11 @@
         <option value="$PROJECT_DIR$/app/models/pcomment.rb" />
         <option value="$PROJECT_DIR$/app/controllers/pcomments_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/ccomments_controller.rb" />
-        <option value="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
         <option value="$PROJECT_DIR$/app/models/ability.rb" />
         <option value="$PROJECT_DIR$/app/views/pcomments/_pcomment.slim" />
         <option value="$PROJECT_DIR$/app/views/approvals/index.slim" />
         <option value="$PROJECT_DIR$/app/views/ccomments/_ccomment.slim" />
+        <option value="$PROJECT_DIR$/app/controllers/posts_controller.rb" />
       </list>
     </option>
   </component>
@@ -1404,14 +1396,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="17" column="80" selection-start-line="17" selection-start-column="80" selection-end-line="17" selection-end-column="80" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/models/ability.rb">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -1442,8 +1426,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/views/ccomments/_ccomment.slim">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.23584905">
+        <state vertical-scroll-proportion="-9.375">
           <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/controllers/posts_controller.rb">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.35276073">
+          <caret line="23" column="5" selection-start-line="23" selection-start-column="5" selection-end-line="23" selection-end-column="5" />
           <folding />
         </state>
       </provider>

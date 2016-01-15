@@ -5,10 +5,21 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
+    #@available_tags = Tag.select('tags.*, count(posts_tags.tag_id) AS count').joins(:posts_tags).group('tags.id').order('count DESC')
+    @available_tags = Tag.select('tags.*, count(pt.tag_id) AS cnt').joins('JOIN posts_tags pt ON tags.id = pt.tag_id').group('tags.id').order('cnt DESC')
+
     if !current_user.nil?
-      @posts = Post.eager_load(:user)
+      if params[:tag]
+        @posts = Post.tagged_with(params[:tag]).eager_load(:tags, :user).order('posts.updated_at DESC')
+      else
+        @posts = Post.eager_load(:tags, :user).order('posts.updated_at DESC')
+      end
     else
-      @posts = Post.where('is_private <> ?', true).eager_load(:user)
+      if params[:tag]
+        @posts = Post.where('is_private <> ?', true).tagged_with(params[:tag]).eager_load(:tags, :user).order('posts.updated_at DESC')
+      else
+        @posts = Post.where('is_private <> ?', true).eager_load(:tags, :user).order('posts.updated_at DESC')
+      end
     end
   end
 
@@ -51,6 +62,7 @@ class PostsController < ApplicationController
     else
       render :edit
     end
+    update_tags
   end
 
   # DELETE /posts/1
@@ -58,12 +70,24 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     redirect_to posts_url, notice: 'Post was successfully destroyed.'
+    update_tags
   end
 
   private
 
+  def update_tags
+    Tag.where('tags.id NOT IN (SELECT DISTINCT tag_id FROM posts_tags)').destroy_all
+  end
+
+  # Use callbacks to share common setup or constraints between actions.
+  def set_post
+    @post = Post.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    @post = {}
+  end
+
   # Never trust parameters from the scary internet, only allow the white list through.
   def post_params
-    params.require(:post).permit(:user_id, :title, :description, :is_private, :options)
+    params.require(:post).permit(:user_id, :title, :description, :is_private, :options, :all_tags)
   end
 end
