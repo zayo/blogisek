@@ -20,23 +20,23 @@ html lang="en"
 
 
   body
-    .navbar.navbar-default.navbar-static-top
+    .blog-masthead
       .container
-        button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
-        a.navbar-brand href="/" Blog
-        - unless current_user.nil?
-          a.navbar-brand href="/approvals" Approvals
-        .navbar-text.pull-right
+        nav.blog-nav
+          a.blog-nav-item class=('active' if params['controller'] == 'posts') href="/"
+              | Blog
+          - unless current_user.nil?
+            a.blog-nav-item class=('active' if params['controller'] == 'approvals') href="/approvals"
+                | Approvals
+          .navbar-text
           - if user_signed_in?
-            ' Logged in as
-            =' image_tag(current_user.avatar.url(:thumb), :class => 'round-image-40')
-            strong =' current_user.email
-            =' link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link'
-            =' link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'navbar-link'
+            = link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'pull-right blog-nav-item'
+            = link_to image_tag(current_user.avatar.url(:thumb), :class => 'round-image-40'), edit_user_registration_path, :class => 'pull-right'
+            /= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-text pull-right'
           - else
-            =' link_to 'Sign up', new_user_registration_path, :class => 'navbar-link'
-            =' link_to 'Login', new_user_session_path, :class => 'navbar-link'
-        .navbar-collapse.collapse.navbar-responsive-collapse
+            =' link_to 'Sign up', new_user_registration_path, :class => 'blog-nav-item pull-right'
+            =' link_to 'Login', new_user_session_path, :class => 'blog-nav-item pull-right'
+    /.text-right = current_user.email
 
   .container
     .row
