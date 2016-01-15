@@ -47,18 +47,22 @@ class PostsController < ApplicationController
   def all_posts
     @available_tags = Tag.select('tags.*, count(pt.tag_id) AS cnt').joins('JOIN posts_tags pt ON tags.id = pt.tag_id').group('tags.id').order('cnt DESC')
 
-    if !current_user.nil?
-      if params[:tag]
-        @posts = Post.tagged_with(params[:tag]).eager_load(:tags, :user).order('posts.updated_at DESC')
-      else
-        @posts = Post.eager_load(:tags, :user).order('posts.updated_at DESC')
-      end
+    if !current_user.nil? and params[:tag]
+      @posts = Post.tagged_with(params[:tag])
+                 .eager_load(:tags, :user)
+                 .order('posts.updated_at DESC')
+    elsif !current_user.nil?
+      @posts = Post.eager_load(:tags, :user)
+                 .order('posts.updated_at DESC')
+    elsif params[:tag]
+      @posts = Post.where('posts.is_private = ?', false)
+                 .tagged_with(params[:tag])
+                 .eager_load(:tags, :user)
+                 .order('posts.updated_at DESC')
     else
-      if params[:tag]
-        @posts = Post.where('is_private <> ?', true).tagged_with(params[:tag]).eager_load(:tags, :user).order('posts.updated_at DESC')
-      else
-        @posts = Post.where('is_private <> ?', true).eager_load(:tags, :user).order('posts.updated_at DESC')
-      end
+      @posts = Post.where('posts.is_private = ?', false)
+                 .eager_load(:tags, :user)
+                 .order('posts.updated_at DESC')
     end
   end
 
