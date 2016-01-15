@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    #@available_tags = Tag.select('tags.*, count(posts_tags.tag_id) AS count').joins(:posts_tags).group('tags.id').order('count DESC')
     @available_tags = Tag.select('tags.*, count(pt.tag_id) AS cnt').joins('JOIN posts_tags pt ON tags.id = pt.tag_id').group('tags.id').order('cnt DESC')
 
     if !current_user.nil?
@@ -68,7 +67,8 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
+    post = Post.find(params[:id])
+    post.destroy
     redirect_to posts_url, notice: 'Post was successfully destroyed.'
     update_tags
   end

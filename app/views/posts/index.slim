@@ -1,31 +1,39 @@
 - model_class = Post
-div class="page-header"
-  h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
+.col-sm-8.blog-main
+  = bootstrap_flash
+
+  - @posts.each do |post|
+    .blog-post
+      a.h2.blog-post-title href=post_path(post)
+        = post.title
+      p.blog-post-meta
+        = post.updated_at.to_datetime.strftime("%d %h %Y %H:%M:%S by ")
+        = post.user.user_name
+        /= image_tag(post.user.avatar.url(:thumb), :class => 'image-30')
+        = raw tag_links(post.all_tags)
+        - if can? :destroy, post
+          = link_to 'destroy',
+            post_path(post),
+            :method => :delete,
+            :data => { :confirm => 'Are you sure?' },
+            :class => 'btn btn-xs btn-danger pull-right'
+        - if can? :update, post
+          = link_to 'edit',
+            edit_post_path(post),
+            :class => 'btn btn-default btn-xs pull-right'
+
+      p = post.description
+
+
+
+.col-sm-3.col-sm-offset-1.blog-sidebar
   - if can? :create, Post
-    = link_to t('.new', :default => t("helpers.links.new")), new_post_path, :class => 'btn btn-primary'
-table class="table table-striped"
-  thead
-    tr
-      th[colspan="2"]
-        = model_class.human_attribute_name(:user)
-      th= 'tags'
-      th= model_class.human_attribute_name(:title)
-      th= model_class.human_attribute_name(:description)
-      th=t '.actions', :default => t("helpers.actions")
-  tbody
-    - @posts.each do |post|
-      tr
-        td= image_tag(post.user.avatar.url(:thumb), :class => 'image-30')
-        td= post.user.user_name
-        td= raw tag_links(post.all_tags)
-        td= post.title
-        td= post.description
-        td
-          - if can? :read, post
-            = link_to t('.show', :default => t("helpers.links.show")), post_path(post), :class => 'btn btn-default btn-xs'
-            '
-          - if can? :update, post
-            = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(post), :class => 'btn btn-default btn-xs'
-            '
-          - if can? :destroy, post
-            = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(post), :method => :delete, :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-xs btn-danger'
+    = link_to 'Create new post', new_post_path, :class => 'btn btn-primary'
+  .sidebar-module
+    h4 Tags
+    ol.list-unstyled
+      - all_tag_links(@available_tags).each do | tag |
+        li = tag
+
+
+

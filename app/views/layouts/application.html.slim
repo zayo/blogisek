@@ -30,28 +30,28 @@ html lang="en"
                 | Approvals
           .navbar-text
           - if user_signed_in?
-            = link_to 'Logout', destroy_user_session_path, method: :delete, :class => 'pull-right blog-nav-item'
-            = link_to image_tag(current_user.avatar.url(:thumb), :class => 'round-image-40'), edit_user_registration_path, :class => 'pull-right'
-            /= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-text pull-right'
+            = link_to 'Logout',
+                destroy_user_session_path,
+                method: :delete,
+                :class => 'pull-right blog-nav-item'
+
+            = link_to image_tag(current_user.avatar.url(:thumb),
+                :class => 'round-image-40'),
+                edit_user_registration_path,
+                :class => 'pull-right'
           - else
-            =' link_to 'Sign up', new_user_registration_path, :class => 'blog-nav-item pull-right'
-            =' link_to 'Login', new_user_session_path, :class => 'blog-nav-item pull-right'
-    /.text-right = current_user.email
+            = link_to 'Sign up',
+                new_user_registration_path,
+                :class => 'blog-nav-item pull-right'
+            = link_to 'Login',
+                new_user_session_path,
+                :class => 'blog-nav-item pull-right'
 
   .container
     .blog-header
       h1.blog-title Blogísek Míši a Níši
       p.lead.blog-description Blog vytovořený jako závěrečný projekt pro předmet Ruby na Masarykové univerzitě v Brne.
     .row
-      .col-sm-8.blog-main
-        = bootstrap_flash
-        = yield
-      .col-sm-3.col-sm-offset-1.blog-sidebar
-        .sidebar-module
-          h4 Tags
-          ol.list-unstyled
-            - all_tag_links(@available_tags).each do | tag |
-              li = tag
-
+      = yield
     .footer
       p &copy; urvi <3 nislav 2016
