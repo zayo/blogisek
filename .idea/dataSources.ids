@@ -4,6 +4,36 @@
     <database-info product="SQLite" version="3.8.9" jdbc-version="2.1" driver-name="SQLiteJDBC" driver-version="native"/>
     <case-sensitivity plain-identifiers="mixed" quoted-identifiers="mixed"/>
     <schema name="" catalog=""/>
+    <table name="ccomments" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="message" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="pcomment_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="updated_at" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="approved" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4" def="J3Qn"/>
+      <column name="post_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <primary-key columns="id"/>
+      <index name="index_ccomments_on_user_id" unique="true" columns="user_id"/>
+      <index name="index_ccomments_on_post_id" unique="true" columns="post_id"/>
+      <index name="index_ccomments_on_pcomment_id" unique="true" columns="pcomment_id"/>
+    </table>
+    <table name="pcomments" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="message" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="likes" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="dislikes" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4" def="MA=="/>
+      <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="post_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="updated_at" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="approved" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4" def="J3Qn"/>
+      <primary-key columns="id"/>
+      <index name="index_pcomments_on_user_id" unique="true" columns="user_id"/>
+      <index name="index_pcomments_on_post_id" unique="true" columns="post_id"/>
+    </table>
     <table name="posts" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
@@ -11,8 +41,16 @@
       <column name="description" sqlType="TEXT" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="created_at" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
       <column name="updated_at" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="is_private" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4" def="J2Yn"/>
+      <column name="options" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4" def="MA=="/>
       <primary-key columns="id"/>
       <index name="index_posts_on_user_id" unique="true" columns="user_id"/>
+    </table>
+    <table name="posts_tags" schema="" catalog="" type="TABLE">
+      <column name="post_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="tag_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <index name="index_posts_tags_on_tag_id" unique="true" columns="tag_id"/>
+      <index name="index_posts_tags_on_post_id" unique="true" columns="post_id"/>
     </table>
     <table name="roles" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
@@ -22,8 +60,8 @@
       <column name="created_at" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="updated_at" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <primary-key columns="id"/>
-      <index name="index_roles_on_name_and_resource_type_and_resource_id" unique="true" columns="name,resource_type,resource_id"/>
       <index name="index_roles_on_name" unique="true" columns="name"/>
+      <index name="index_roles_on_name_and_resource_type_and_resource_id" unique="true" columns="name,resource_type,resource_id"/>
     </table>
     <table name="schema_migrations" schema="" catalog="" type="TABLE">
       <column name="version" sqlType="VARCHAR" precision="0" scale="-1" nullable="false" jdbcType="12"/>
@@ -32,6 +70,14 @@
     <table name="sqlite_sequence" schema="" catalog="" type="TABLE">
       <column name="name" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="seq" sqlType="" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+    </table>
+    <table name="tags" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="name" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="karma" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <column name="updated_at" sqlType="DATETIME" precision="0" scale="-1" nullable="false" jdbcType="12"/>
+      <primary-key columns="id"/>
     </table>
     <table name="users" schema="" catalog="" type="TABLE">
       <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
@@ -55,7 +101,9 @@
       <column name="avatar_content_type" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <column name="avatar_file_size" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <column name="avatar_updated_at" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="user_name" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
       <primary-key columns="id"/>
+      <index name="index_users_on_user_name" unique="true" columns="user_name"/>
       <index name="index_users_on_reset_password_token" unique="true" columns="reset_password_token"/>
       <index name="index_users_on_email" unique="true" columns="email"/>
     </table>
@@ -63,6 +111,21 @@
       <column name="user_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <column name="role_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
       <index name="index_users_roles_on_user_id_and_role_id" unique="true" columns="user_id,role_id"/>
+    </table>
+    <table name="votes" schema="" catalog="" type="TABLE">
+      <column name="id" sqlType="INTEGER" precision="0" scale="-1" nullable="false" jdbcType="4"/>
+      <column name="votable_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="votable_type" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="voter_id" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="voter_type" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="vote_flag" sqlType="BOOLEAN" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="vote_scope" sqlType="VARCHAR" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="vote_weight" sqlType="INTEGER" precision="0" scale="-1" nullable="true" jdbcType="4"/>
+      <column name="created_at" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <column name="updated_at" sqlType="DATETIME" precision="0" scale="-1" nullable="true" jdbcType="12"/>
+      <primary-key columns="id"/>
+      <index name="index_votes_on_voter_id_and_voter_type_and_vote_scope" unique="true" columns="voter_id,voter_type,vote_scope"/>
+      <index name="index_votes_on_votable_id_and_votable_type_and_vote_scope" unique="true" columns="votable_id,votable_type,vote_scope"/>
     </table>
   </data-source>
 </component>
