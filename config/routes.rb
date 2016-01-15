@@ -4,10 +4,17 @@ Rails.application.routes.draw do
 
   resources :approvals, only: [:index]
 
-  put 'approvals/pcomment/:id', to: 'pcomments#approve'
-  put 'approvals/ccomment/:id', to: 'ccomments#approve'
-  delete 'approvals/pcomment/:id', to: 'pcomments#disapprove'
-  delete 'approvals/ccomment/:id', to: 'ccomments#disapprove'
+  # redirect
+  put '/approvals/pcomment/:id', to: 'pcomments#approve'
+  put '/approvals/ccomment/:id', to: 'ccomments#approve'
+  delete '/approvals/pcomment/:id', to: 'pcomments#disapprove'
+  delete '/approvals/ccomment/:id', to: 'ccomments#disapprove'
+
+  put '/like/ccomment/:id', to: 'ccomments#like'
+  put '/dislike/ccomment/:id', to: 'ccomments#dislike'
+  put '/like/pcomment/:id', to: 'pcomments#like'
+  put '/dislike/pcomment/:id', to: 'pcomments#dislike'
+
 
   resources :posts do
     resources :pcomments do

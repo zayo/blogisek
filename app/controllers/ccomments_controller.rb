@@ -1,9 +1,6 @@
 class CcommentsController < ApplicationController
 
-  before_action only: [:create, :destroy]
-
-  def show
-  end
+  before_action only: [:create, :destroy, :approve, :disapprove, :like, :dislike]
 
   def create
     @post = Post.find(params[:post_id])
@@ -34,13 +31,27 @@ class CcommentsController < ApplicationController
     @comment          = Ccomment.find(params[:id])
     @comment.approved = true
     @comment.save
-    redirect_to approvals_path, :notice => 'Ccomment was approved'
+    redirect_to :back, :notice => 'Ccomment was approved'
   end
 
   def disapprove
     @comment = Ccomment.find(params[:id])
     @comment.destroy
-    redirect_to approvals_path, :notice => 'Ccomment was deleted'
+    redirect_to :back, :notice => 'Ccomment was deleted'
+  end
+
+  def like
+    @comment = Ccomment.find(params[:id])
+    @comment.likes += 1
+    @comment.save
+    redirect_to :back, :notice => 'Ccoment was liked'
+  end
+
+  def dislike
+    @comment = Ccomment.find(params[:id])
+    @comment.dislikes += 1
+    @comment.save
+    redirect_to :back, :notice => 'Ccoment was disliked'
   end
 
   def destroy

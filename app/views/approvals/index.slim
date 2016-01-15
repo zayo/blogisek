@@ -5,23 +5,15 @@ table class="table table-striped"
     - if !@pcomments.nil? and @pcomments.any?
       p
         ' Post comments waiting for approval
-      - @pcomments.each do |comment|
+      - @pcomments.each do |pcomment|
         p class="pcomment"
-          = render 'pcomments/pcomment', :pcomment => comment, :post => nil
+          = render 'pcomments/pcomment', :pcomment => pcomment, :post => nil
     - if !@ccomments.nil? and @ccomments.any?
       p
         ' Comment comments waiting for approval
-      - @ccomments.each do |comment|
+      - @ccomments.each do |ccomment|
         p class="pcomment"
-          = render 'pcomments/pcomment', :ccomment => comment, :post => nil
-          - if comment.user.nil?
-            ' Anonymous user:
-            =' comment.name
-          - else
-            ' Registered user:
-            =' comment.user.email
-          br
-          =' comment.message
+          = render 'ccomments/ccomment', :ccomment => ccomment, :post => nil
 
   - else
       - if current_user
