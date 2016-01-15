@@ -1,10 +1,11 @@
 class PcommentsController < ApplicationController
 
-  before_action only: [:create, :destroy, :approve, :disapprove, :like, :dislike]
+  before_action :set_post, only: [:create, :destroy]
+  before_action :set_comment, only: [:destroy, :approve, :disapprove, :like, :dislike]
+
+  respond_to :html
 
   def create
-    @post = Post.find(params[:post_id])
-
     if @post.comments_disabled?
       redirect_to post_path(@post), alert: 'Comments not allowed here'
     else
@@ -25,42 +26,46 @@ class PcommentsController < ApplicationController
   end
 
   def approve
-    #user approves comment
-    @comment          = Pcomment.find(params[:id])
-    @comment.approved = true
-    @comment.save
-    redirect_to :back, :notice => 'Pcomment was approved'
+    @pcomment.approved = true
+    @pcomment.save
+    redirect_to :back, :notice => 'Pcoment was approved'
   end
 
   def disapprove
-    @pcomment = Pcomment.find(params[:id])
     @pcomment.destroy
-    redirect_to :back, :notice => 'Pcomment was deleted'
+    redirect_to :back, :notice => 'Pcoment was deleted'
   end
 
   def like
-    @comment = Pcomment.find(params[:id])
-    @comment.likes += 1
-    @comment.save
-    redirect_to :back, :notice => 'Pcoment was liked'
+    unless current_user.nil?
+      current_user.likes @pcomment
+      redirect_to :back, :notice => 'Pcoment was liked'
+    end
   end
 
   def dislike
-    @comment = Pcomment.find(params[:id])
-    @comment.dislikes += 1
-    @comment.save
-    redirect_to :back, :notice => 'Pcoment was disliked'
+    unless current_user.nil?
+      current_user.dislikes @pcomment
+      redirect_to :back, :notice => 'Pcoment was disliked'
+    end
   end
 
 
   def destroy
-    @post     = Post.find(params[:post_id])
     @pcomment = @post.pcomments.find(params[:id])
     @pcomment.destroy
     redirect_to post_path(@post), :notice => 'Pcomment was deleted'
   end
 
   private
+
+  def set_post
+    @post = Post.find(params[:post_id])
+  end
+
+  def set_comment
+    @pcomment = Pcomment.find(params[:id])
+  end
 
   def post_params
     params.require(:pcomment).permit(:post_id, :name, :message)

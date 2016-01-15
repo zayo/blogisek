@@ -10,11 +10,13 @@
           ' Registered user:
           =' pcomment.user.user_name
         ' likes:
-        =' pcomment.likes
-        = link_to t("helpers.links.like"), "/like/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'
+        =' pcomment.get_likes.size
+        - if can? :like, pcomment
+          = link_to t("helpers.links.like"), "/like/pcomment/#{pcomment.id}", :method => :put, :class => get_like_class(pcomment)
         ' dislikes:
-        =' pcomment.dislikes
-        = link_to t("helpers.links.dislike"), "/dislike/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'
+        =' pcomment.get_dislikes.size
+        -if can? :dislike, pcomment
+          = link_to t("helpers.links.dislike"), "/dislike/pcomment/#{pcomment.id}", :method => :put, :class => get_dislike_class(pcomment)
         br
         - if can? :update, pcomment and !pcomment.approved
           = link_to t("helpers.links.approve"), "/approvals/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'

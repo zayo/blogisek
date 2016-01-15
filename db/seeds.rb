@@ -6,10 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-admin = User.create!({ email: "admin@admin.com", password: "adminadmin", reset_password_token: nil, unconfirmed_email: nil, confirmed_at: "2015-12-12 17:19:17" });
+admin = User.create!({user_name: "admin", email: "admin@admin.com", password: "adminadmin", reset_password_token: nil, unconfirmed_email: nil, confirmed_at: "2015-12-12 17:19:17" });
 admin.add_role :admin
 
-user = User.create!({ email: "test@test.com", password: "testtest", reset_password_token: nil, unconfirmed_email: nil, confirmed_at: "2015-12-12 17:19:17" });
+user = User.create!({user_name: "testUser", email: "test@test.com", password: "testtest", reset_password_token: nil, unconfirmed_email: nil, confirmed_at: "2015-12-12 17:19:17" });
 user.add_role :user
 
 =begin

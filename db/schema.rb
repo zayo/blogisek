@@ -11,13 +11,11 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160115175337) do
+ActiveRecord::Schema.define(version: 20160115215311) do
 
   create_table "ccomments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
-    t.integer  "likes",       default: 0
-    t.integer  "dislikes",    default: 0
     t.integer  "user_id"
     t.integer  "pcomment_id"
     t.datetime "created_at",                 null: false
@@ -33,8 +31,6 @@ ActiveRecord::Schema.define(version: 20160115175337) do
   create_table "pcomments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
-    t.integer  "likes",      default: 0
-    t.integer  "dislikes",   default: 0
     t.integer  "user_id"
     t.integer  "post_id"
     t.datetime "created_at",                null: false
@@ -117,5 +113,20 @@ ActiveRecord::Schema.define(version: 20160115175337) do
   end
 
   add_index "users_roles", ["user_id", "role_id"], name: "index_users_roles_on_user_id_and_role_id"
+
+  create_table "votes", force: :cascade do |t|
+    t.integer  "votable_id"
+    t.string   "votable_type"
+    t.integer  "voter_id"
+    t.string   "voter_type"
+    t.boolean  "vote_flag"
+    t.string   "vote_scope"
+    t.integer  "vote_weight"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "votes", ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+  add_index "votes", ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
 
 end

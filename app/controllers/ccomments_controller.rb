@@ -1,10 +1,11 @@
 class CcommentsController < ApplicationController
 
+  before_action :set_post, only: [:create, :destroy]
+  before_action :set_comment, only: [:destroy, :approve, :disapprove, :like, :dislike]
+
   before_action only: [:create, :destroy, :approve, :disapprove, :like, :dislike]
 
   def create
-    @post = Post.find(params[:post_id])
-
     if @post.comments_disabled?
       redirect_to post_path(@post), alert: 'Comments not allowed here'
     else
@@ -14,10 +15,8 @@ class CcommentsController < ApplicationController
       @ccomment.approved = !@post.comments_approval?
 
       unless current_user.nil?
-        @ccomment.user_id = current_user.id
-        unless @ccomment.approved
-          @ccomment.approved = (current_user == @post.user)
-        end
+        @ccomment.user_id  = current_user.id
+        @ccomment.approved = @ccomment.approved ? true : (current_user == @post.user)
       end
 
       approval = !@ccomment.approved ? ' waiting for approval' : ' saved'
@@ -28,38 +27,45 @@ class CcommentsController < ApplicationController
 
   def approve
     #user approves comment
-    @comment          = Ccomment.find(params[:id])
-    @comment.approved = true
-    @comment.save
+    @ccomment.approved = true
+    @ccomment.save
     redirect_to :back, :notice => 'Ccomment was approved'
   end
 
   def disapprove
-    @comment = Ccomment.find(params[:id])
-    @comment.destroy
+    @ccomment.destroy
     redirect_to :back, :notice => 'Ccomment was deleted'
   end
 
   def like
-    @comment = Ccomment.find(params[:id])
-    @comment.likes += 1
-    @comment.save
-    redirect_to :back, :notice => 'Ccoment was liked'
+    unless current_user.nil?
+      current_user.likes @ccomment
+      redirect_to :back, :notice => 'Ccoment was liked'
+    end
   end
 
   def dislike
-    @comment = Ccomment.find(params[:id])
-    @comment.dislikes += 1
-    @comment.save
-    redirect_to :back, :notice => 'Ccoment was disliked'
+    unless current_user.nil?
+      current_user.dislikes @ccomment
+      redirect_to :back, :notice => 'Ccoment was disliked'
+    end
   end
 
   def destroy
-    @post     = Post.find(params[:post_id])
     @pcomment = @post.pcomments.find(params[:pcomment_id])
     @ccomment = @pcomment.ccomments.find(params[:id])
     @ccomment.destroy
     redirect_to post_path(@post), :notice => 'Ccomment was deleted'
+  end
+
+  private
+  def set_comment
+    @ccomment = Ccomment.find(params[:id])
+  end
+
+  private
+  def set_post
+    @post = Post.find(params[:post_id])
   end
 
   private

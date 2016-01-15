@@ -15,8 +15,6 @@ class Ability
       can [:read, :create], Post
       can [:update, :destroy], Post, :user_id => user.id
 
-
-
       can [:read, :create], Pcomment, :approved => true
       can [:read, :create], Ccomment, :approved => true
 
@@ -25,6 +23,9 @@ class Ability
 
       can [:destroy], Pcomment, :user_id => user.id
       can [:destroy], Ccomment, :user_id => user.id
+
+      can [:like, :dislike], Pcomment
+      can [:like, :dislike], Ccomment
     end
   end
 end
