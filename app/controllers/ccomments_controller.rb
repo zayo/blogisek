@@ -3,8 +3,6 @@ class CcommentsController < ApplicationController
   before_action :set_post, only: [:create, :destroy]
   before_action :set_comment, only: [:destroy, :approve, :disapprove, :like, :dislike]
 
-  before_action only: [:create, :destroy, :approve, :disapprove, :like, :dislike]
-
   def create
     if @post.comments_disabled?
       redirect_to post_path(@post), alert: 'Comments not allowed here'
@@ -73,5 +71,4 @@ class CcommentsController < ApplicationController
   def post_params
     params.require(:ccomment).permit(:post_id, :pcomment_id, :name, :message)
   end
-
 end
