@@ -6,7 +6,7 @@
   p
     strong= model_class.human_attribute_name(:user) + ':'
     br
-    = @post.user_name
+    = @post.user.user_name
   p
     strong= model_class.human_attribute_name(:title) + ':'
     br

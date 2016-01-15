@@ -8,7 +8,7 @@
           =' pcomment.name
         - else
           ' Registered user:
-          =' pcomment.user.email
+          =' pcomment.user.user_name
         ' likes:
         =' pcomment.likes
         = link_to t("helpers.links.like"), "/like/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'

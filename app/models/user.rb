@@ -12,5 +12,7 @@ class User < ActiveRecord::Base
   has_many :pcomments, :dependent => :destroy
   has_many :ccomments, :dependent => :destroy
 
+  validates :user_name, presence: true, length: { minimum: 4, maximum: 56 }
+
   accepts_nested_attributes_for :posts
 end

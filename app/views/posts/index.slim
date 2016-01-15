@@ -17,7 +17,7 @@ table class="table table-striped"
     - @posts.each do |post|
       tr
         td= image_tag(post.user.avatar.url(:thumb), :class => 'image-30')
-        td= post.user.email
+        td= post.user.user_name
         td= raw tag_links(post.all_tags)
         td= post.title
         td= post.description
