@@ -1,22 +1,28 @@
 - model_class = Pcomment
-- unless pcomment.id.nil?
-  div class='pcomment'
-    p
-      - if pcomment.user.nil?
-        ' Anonymous user:
-        =' pcomment.name
-      - else
-        ' Registered user:
-        =' pcomment.user.email
-      ' likes:
-      =' pcomment.likes
-      ' dislikes:
-      =' pcomment.dislikes
-      - if can? :destroy, pcomment
-        = link_to t("helpers.links.destroy"), post_pcomment_path(post, pcomment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-xs'
+- if can? :read, pcomment
+  - unless pcomment.id.nil?
+    div class='pcomment'
+      p
+        - if pcomment.user.nil?
+          ' Anonymous user:
+          =' pcomment.name
+        - else
+          ' Registered user:
+          =' pcomment.user.email
+        ' likes:
+        =' pcomment.likes
+        ' dislikes:
+        =' pcomment.dislikes
+        br
+        - if can? :update, pcomment
+          = link_to t("helpers.links.approve"), "approvals/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'
+          '
+          = link_to t("helpers.links.disapprove"), "approvals/pcomment/#{pcomment.id}", :method => :delete, :class => 'btn btn-danger btn-xs'
+        - if can? :destroy, pcomment and !post.nil?
+          = link_to t("helpers.links.destroy"), post_pcomment_path(post, pcomment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-xs'
+        br
+        = pcomment.message
+        - if !post.nil? and !post.comments_disabled?
+          = render  pcomment.ccomments, :post => post, :pcomment => pcomment
+          = render 'ccomments/form', :post => post, :pcomment => pcomment
       br
-      = pcomment.message
-      - if !post.comments_disabled?
-        = render  pcomment.ccomments, :post => post, :pcomment => pcomment
-        = render 'ccomments/form', :post => post, :pcomment => pcomment
-    br

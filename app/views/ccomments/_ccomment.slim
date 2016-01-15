@@ -1,21 +1,25 @@
 - model_class = Ccomment
-- unless ccomment.id.nil?
-  div class='ccomment'
-    p
-      - if ccomment.user.nil?
-        ' Anonymous user:
-        =' ccomment.name
-      - else
-        ' Registered user:
-        =' ccomment.user.email
-      ' likes:
-      =' ccomment.likes
-      ' dislikes:
-      =' ccomment.dislikes
+- if can? :read, ccomment
+  - unless ccomment.id.nil?
+    div class='ccomment'
+      p
+        - if ccomment.user.nil?
+          ' Anonymous user:
+          =' ccomment.name
+        - else
+          ' Registered user:
+          =' ccomment.user.email
+        ' likes:
+        =' ccomment.likes
+        ' dislikes:
+        =' ccomment.dislikes
+        br
+        = ccomment.message
+        br
+        - if can? :update, ccomment
+          = link_to t("helpers.links.approve"), "approvals/ccomment/#{ccomment.id}", :method => :put, :class => 'btn btn-default btn-xs'
+          '
+          = link_to t("helpers.links.disapprove"), "approvals/ccomment/#{ccomment.id}", :method => :delete, :class => 'btn btn-danger btn-xs'
+        - if can? :destroy, ccomment and !post.nil?
+          = link_to t("helpers.links.destroy"), post_pcomment_ccomment_path(post, pcomment, ccomment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-xs'
       br
-      = ccomment.message
-      - if can? :destroy, ccomment
-        = link_to t("helpers.links.destroy"), post_pcomment_ccomment_path(post, pcomment, ccomment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-xs'
-    br
-
-

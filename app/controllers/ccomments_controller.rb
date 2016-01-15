@@ -1,6 +1,6 @@
 class CcommentsController < ApplicationController
 
-  before_action only: [:show, :update, :destroy]
+  before_action only: [:create, :destroy]
 
   def show
   end
@@ -13,6 +13,7 @@ class CcommentsController < ApplicationController
     else
       @pcomment          = @post.pcomments.find(params[:pcomment_id])
       @ccomment          = @pcomment.ccomments.build(post_params)
+      @ccomment.post_id  = @post.id
       @ccomment.approved = !@post.comments_approval?
 
       unless current_user.nil?
@@ -28,7 +29,7 @@ class CcommentsController < ApplicationController
     end
   end
 
-  def update
+  def approve
     #user approves comment
     @comment          = Ccomment.find(params[:id])
     @comment.approved = true
@@ -36,18 +37,18 @@ class CcommentsController < ApplicationController
     redirect_to approvals_path, :notice => 'Ccomment was approved'
   end
 
+  def disapprove
+    @comment = Ccomment.find(params[:id])
+    @comment.destroy
+    redirect_to approvals_path, :notice => 'Ccomment was deleted'
+  end
+
   def destroy
-    if params[:post_id]
-      @post     = Post.find(params[:post_id])
-      @pcomment = @post.pcomments.find(params[:pcomment_id])
-      @ccomment = @pcomment.ccomments.find(params[:id])
-      @ccomment.destroy
-      redirect_to post_path(@post), :notice => 'Ccomment was deleted'
-    else
-      @comment = Ccomment.find(params[:id])
-      @comment.destroy
-      redirect_to approvals_path, :notice => 'Ccomment was deleted'
-    end
+    @post     = Post.find(params[:post_id])
+    @pcomment = @post.pcomments.find(params[:pcomment_id])
+    @ccomment = @pcomment.ccomments.find(params[:id])
+    @ccomment.destroy
+    redirect_to post_path(@post), :notice => 'Ccomment was deleted'
   end
 
   private

@@ -1,23 +1,14 @@
 class ApprovalsController < ApplicationController
 
-  before_action only: [:index, :update]
+  before_action only: [:index]
 
   # GET /approvals
   def index
     if !current_user.nil?
       @pcomments = Pcomment.joins(:post).where('posts.user_id = ?', current_user.id).where('approved = ?', false)
-
-      @ccomments = Ccomment.where('pcomment_id IN (?)', Pcomment.joins(:post).where('posts.user_id = ?', current_user.id).map(&:id)).where('approved = ?', false)
+      @ccomments = Ccomment.joins(:post).where('posts.user_id = ?', current_user.id).where('approved = ?', false)
     end
   end
-
-  def update
-    # code here
-
-    pp params
-
-  end
-
 
   private
 

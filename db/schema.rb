@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160114221533) do
+ActiveRecord::Schema.define(version: 20160115125456) do
 
   create_table "ccomments", force: :cascade do |t|
     t.string   "name"
@@ -23,9 +23,11 @@ ActiveRecord::Schema.define(version: 20160114221533) do
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
     t.boolean  "approved",    default: true
+    t.integer  "post_id"
   end
 
   add_index "ccomments", ["pcomment_id"], name: "index_ccomments_on_pcomment_id"
+  add_index "ccomments", ["post_id"], name: "index_ccomments_on_post_id"
   add_index "ccomments", ["user_id"], name: "index_ccomments_on_user_id"
 
   create_table "pcomments", force: :cascade do |t|

@@ -1,9 +1,6 @@
 class PcommentsController < ApplicationController
 
-  before_action only: [:show, :update, :destroy]
-
-  def show
-  end
+  before_action only: [:create, :destroy]
 
   def create
     @post = Post.find(params[:post_id])
@@ -27,7 +24,7 @@ class PcommentsController < ApplicationController
     end
   end
 
-  def update
+  def approve
     #user approves comment
     @comment          = Pcomment.find(params[:id])
     @comment.approved = true
@@ -35,17 +32,17 @@ class PcommentsController < ApplicationController
     redirect_to approvals_path, :notice => 'Pcomment was approved'
   end
 
+  def disapprove
+    @pcomment = Pcomment.find(params[:id])
+    @pcomment.destroy
+    redirect_to approvals_path, :notice => 'Pcomment was deleted'
+  end
+
   def destroy
-    if params[:post_id]
-      @post     = Post.find(params[:post_id])
-      @pcomment = @post.pcomments.find(params[:id])
-      @pcomment.destroy
-      redirect_to post_path(@post), :notice => 'Pcomment was deleted'
-    else
-      @pcomment = Pcomment.find(params[:id])
-      @pcomment.destroy
-      redirect_to approvals_path, :notice => 'Pcomment was deleted'
-    end
+    @post     = Post.find(params[:post_id])
+    @pcomment = @post.pcomments.find(params[:id])
+    @pcomment.destroy
+    redirect_to post_path(@post), :notice => 'Pcomment was deleted'
   end
 
   private

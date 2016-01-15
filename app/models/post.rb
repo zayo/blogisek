@@ -3,7 +3,8 @@ class Post < ActiveRecord::Base
 
   belongs_to :user
   has_and_belongs_to_many :tags
-  has_many :pcomments, -> { where approved: true }, :dependent => :destroy
+  has_many :pcomments, :dependent => :destroy
+  has_many :ccomments
 
   accepts_nested_attributes_for :pcomments
 

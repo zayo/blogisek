@@ -7,24 +7,13 @@ table class="table table-striped"
         ' Post comments waiting for approval
       - @pcomments.each do |comment|
         p class="pcomment"
-          - if comment.user.nil?
-            ' Anonymous user:
-            =' comment.name
-          - else
-            ' Registered user:
-            =' comment.user.email
-          br
-          =' comment.message
-          br
-          = link_to t("helpers.links.approve"), "approvals/pcomment/#{comment.id}", :method => :put, :class => 'btn btn-default btn-xs'
-          '
-          = link_to t("helpers.links.disapprove"), "approvals/pcomment/#{comment.id}", :method => :delete, :class => 'btn btn-danger btn-xs'
-
+          = render 'pcomments/pcomment', :pcomment => comment, :post => nil
     - if !@ccomments.nil? and @ccomments.any?
       p
         ' Comment comments waiting for approval
       - @ccomments.each do |comment|
         p class="pcomment"
+          = render 'pcomments/pcomment', :ccomment => comment, :post => nil
           - if comment.user.nil?
             ' Anonymous user:
             =' comment.name
@@ -33,10 +22,7 @@ table class="table table-striped"
             =' comment.user.email
           br
           =' comment.message
-          br
-          = link_to t("helpers.links.approve"), "approvals/ccomment/#{comment.id}", :method => :put, :class => 'btn btn-default btn-xs'
-          '
-          = link_to t("helpers.links.disapprove"), "approvals/ccomment/#{comment.id}",:method => :delete, :class => 'btn btn-danger btn-xs'
+
   - else
       - if current_user
         h4 No pending approvals
