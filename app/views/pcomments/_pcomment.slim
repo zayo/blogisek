@@ -11,13 +11,15 @@
           =' pcomment.user.email
         ' likes:
         =' pcomment.likes
+        = link_to t("helpers.links.like"), "/like/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'
         ' dislikes:
         =' pcomment.dislikes
+        = link_to t("helpers.links.dislike"), "/dislike/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'
         br
-        - if can? :update, pcomment
-          = link_to t("helpers.links.approve"), "approvals/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'
+        - if can? :update, pcomment and !pcomment.approved
+          = link_to t("helpers.links.approve"), "/approvals/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'
           '
-          = link_to t("helpers.links.disapprove"), "approvals/pcomment/#{pcomment.id}", :method => :delete, :class => 'btn btn-danger btn-xs'
+          = link_to t("helpers.links.disapprove"), "/approvals/pcomment/#{pcomment.id}", :method => :delete, :class => 'btn btn-danger btn-xs'
         - if can? :destroy, pcomment and !post.nil?
           = link_to t("helpers.links.destroy"), post_pcomment_path(post, pcomment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-xs'
         br

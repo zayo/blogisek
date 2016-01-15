@@ -20,8 +20,12 @@ en:
       show: "Show"
       approve: "Approve"
       disapprove: "Disapprove"
+      like: "Like"
+      dislike: "Dislike"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"
       new: "New %{model}"
       delete: "Delete %{model}"
+      likes: "Likes: %{like}"
+      dislikes: "Dislikes: %{dislike}"
