@@ -4,6 +4,6 @@ module PostsHelper
   end
 
   def all_tag_links(tags)
-    tags.map { |tag| link_to tag.name.strip, tag_path(tag.name.strip), class: 'filter-by-tag' }.join(", ")
+    tags.map { |tag| link_to tag.name.strip, tag_path(tag.name.strip), class: 'filter-by-tag' }
   end
 end

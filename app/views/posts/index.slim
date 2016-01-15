@@ -1,5 +1,4 @@
 - model_class = Post
-= raw all_tag_links(@available_tags)
 div class="page-header"
   h1=t '.title', :default => model_class.model_name.human.pluralize.titleize
   - if can? :create, Post

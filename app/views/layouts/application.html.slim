@@ -39,10 +39,19 @@ html lang="en"
     /.text-right = current_user.email
 
   .container
+    .blog-header
+      h1.blog-title Blogísek Míši a Níši
+      p.lead.blog-description Blog vytovořený jako závěrečný projekt pro předmet Ruby na Masarykové univerzitě v Brne.
     .row
-      .col-lg-9
+      .col-sm-8.blog-main
         = bootstrap_flash
         = yield
+      .col-sm-3.col-sm-offset-1.blog-sidebar
+        .sidebar-module
+          h4 Tags
+          ol.list-unstyled
+            - all_tag_links(@available_tags).each do | tag |
+              li = tag
 
     .footer
-      p &copy; Company 2015
+      p &copy; urvi <3 nislav 2016
