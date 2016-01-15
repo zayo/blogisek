@@ -23,7 +23,9 @@ html lang="en"
     .navbar.navbar-default.navbar-static-top
       .container
         button.navbar-toggle type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse"
-        a.navbar-brand href="/"Blog
+        a.navbar-brand href="/" Blog
+        - unless current_user.nil?
+          a.navbar-brand href="/approvals" Approvals
         .navbar-text.pull-right
           - if user_signed_in?
             ' Logged in as

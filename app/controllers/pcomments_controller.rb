@@ -1,6 +1,6 @@
 class PcommentsController < ApplicationController
 
-  before_action only: [:show, :destroy]
+  before_action only: [:show, :update, :destroy]
 
   def show
   end
@@ -22,16 +22,30 @@ class PcommentsController < ApplicationController
       end
 
       approval = !@pcomment.approved ? ' waiting for approval' : ' saved'
-      msg = @pcomment.save ? 'Pcomment' + approval : 'Unable to save pcomment: ' + @pcomment.errors.full_messages.join('. ')
+      msg      = @pcomment.save ? 'Pcomment' + approval : 'Unable to save pcomment: ' + @pcomment.errors.full_messages.join('. ')
       redirect_to post_path(@post), notice: msg
     end
   end
 
+  def update
+    #user approves comment
+    @comment          = Pcomment.find(params[:id])
+    @comment.approved = true
+    @comment.save
+    redirect_to approvals_path, :notice => 'Pcomment was approved'
+  end
+
   def destroy
-    @post     = Post.find(params[:post_id])
-    @pcomment = @post.pcomments.find(params[:id])
-    @pcomment.destroy
-    redirect_to post_path(@post), :notice => 'Pcomment was deleted'
+    if params[:post_id]
+      @post     = Post.find(params[:post_id])
+      @pcomment = @post.pcomments.find(params[:id])
+      @pcomment.destroy
+      redirect_to post_path(@post), :notice => 'Pcomment was deleted'
+    else
+      @pcomment = Pcomment.find(params[:id])
+      @pcomment.destroy
+      redirect_to approvals_path, :notice => 'Pcomment was deleted'
+    end
   end
 
   private

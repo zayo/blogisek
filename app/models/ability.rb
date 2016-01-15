@@ -6,15 +6,15 @@ class Ability
     if user.nil?
       cannot :manage, :all
       can :read, Post, :is_private => false
-      can [:read, :create], Pcomment
-      can [:read, :create], Ccomment
+      can [:read, :create], Pcomment, :approved => true
+      can [:read, :create], Ccomment, :approved => true
     elsif user.has_role? :admin
       can :manage, :all
     else
       cannot :manage, :all
       can [:read, :create], Post
-      can [:read, :create], Pcomment
-      can [:read, :create], Ccomment
+      can [:read, :create], Pcomment, :approved => true
+      can [:read, :create], Ccomment, :approved => true
 
       can [:update, :destroy], Post, :user_id => user.id
       can [:destroy], Pcomment, :user_id => user.id

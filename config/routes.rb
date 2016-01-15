@@ -1,5 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :approvals, only: [:index]
+
+  put 'approvals/pcomment/:id', to: 'pcomments#update'
+  put 'approvals/ccomment/:id', to: 'ccomments#update'
+  delete 'approvals/pcomment/:id', to: 'pcomments#destroy'
+  delete 'approvals/ccomment/:id', to: 'ccomments#destroy'
+
   resources :posts do
     resources :pcomments, only: [:create, :destroy] do
       resources :ccomments, only: [:create, :destroy]

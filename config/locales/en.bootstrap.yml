@@ -7,6 +7,7 @@ en:
       root: "Index"
     pages:
       pages: "Pages"
+      approvals: "Approvals"
   helpers:
     actions: "Actions"
     links:
@@ -17,6 +18,8 @@ en:
       new: "New"
       edit: "Edit"
       show: "Show"
+      approve: "Approve"
+      disapprove: "Disapprove"
     titles:
       edit: "Edit %{model}"
       save: "Save %{model}"
