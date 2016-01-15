@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'pots/filter/:tag', to: 'posts#index', as: 'tag'
+
   resources :approvals, only: [:index]
 
   put 'approvals/pcomment/:id', to: 'pcomments#update'
