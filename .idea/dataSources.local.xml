@@ -4,5 +4,9 @@
     <data-source name="Rails blog: development" uuid="fa58648c-8520-43bc-87c3-a6d658628f8f">
       <auth-required>false</auth-required>
     </data-source>
+    <data-source name="Rails blog: test" uuid="f5336b60-e423-4329-b821-3195bb2f0cdc">
+      <auth-required>false</auth-required>
+      <first-sync>true</first-sync>
+    </data-source>
   </component>
 </project>

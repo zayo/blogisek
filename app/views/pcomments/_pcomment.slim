@@ -1,32 +1,68 @@
 - model_class = Pcomment
 - if can? :read, pcomment
   - unless pcomment.id.nil?
-    div class='pcomment'
-      p
-        - if pcomment.user.nil?
-          ' Anonymous user:
-          =' pcomment.name
-        - else
-          ' Registered user:
-          =' pcomment.user.user_name
-        ' likes:
-        =' pcomment.get_likes.size
-        - if can? :like, pcomment
-          = link_to t("helpers.links.like"), "/like/pcomment/#{pcomment.id}", :method => :put, :class => get_like_class(pcomment)
-        ' dislikes:
-        =' pcomment.get_dislikes.size
-        -if can? :dislike, pcomment
-          = link_to t("helpers.links.dislike"), "/dislike/pcomment/#{pcomment.id}", :method => :put, :class => get_dislike_class(pcomment)
-        br
-        - if can? :update, pcomment and !pcomment.approved
-          = link_to t("helpers.links.approve"), "/approvals/pcomment/#{pcomment.id}", :method => :put, :class => 'btn btn-default btn-xs'
-          '
-          = link_to t("helpers.links.disapprove"), "/approvals/pcomment/#{pcomment.id}", :method => :delete, :class => 'btn btn-danger btn-xs'
-        - if can? :destroy, pcomment and !post.nil?
-          = link_to t("helpers.links.destroy"), post_pcomment_path(post, pcomment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-xs'
-        br
-        = pcomment.message
+
+    div.comment-container
+      div.comments-display
+        ul.posted-comments
+          li
+            div.avatar.pull-left
+              - if pcomment.user.nil?
+                img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" border="0" class="ui-corner-all curr-user-photo"
+              - else
+                = image_tag(pcomment.user.avatar.url(:thumb), :class => 'image-30')
+            div.posted-comment-container.pull-left
+              div.posted-comment-head
+                span.posted-comment-title
+                  - if can? :update, pcomment and !pcomment.approved
+                    br
+                    = link_to t("helpers.links.approve"),
+                      "/approvals/pcomment/#{pcomment.id}",
+                      :method => :put,
+                      :class => 'btn btn-default btn-xs'
+                    '
+                    = link_to t("helpers.links.disapprove"),
+                      "/approvals/pcomment/#{pcomment.id}",
+                      :method => :delete,
+                      :class => 'btn btn-danger btn-xs'
+                  = pcomment.name
+              div.posted-comment-body
+                div.posted-comment-txt
+                  = pcomment.message
+              div.posted-comment-foot
+                span.posted-comment-author
+                  - if pcomment.user.nil?
+                    | Anonymous
+                  - else
+                    = pcomment.user.user_name
+                span.dot •
+                span.real-time =pcomment.updated_at.to_datetime.strftime("%d %h %Y - %H:%M:%S")
+                - if can? :destroy, pcomment and !post.nil?
+                  span.dot •
+                  span.post-edit
+                    = link_to "delete",
+                      post_pcomment_path(post, pcomment),
+                      :method => "delete",
+                      :data => { :confirm => 'Are you sure' }
+                  span.dot •
+                  - if can? :like, pcomment
+                    = link_to 'like',
+                      "/like/pcomment/#{pcomment.id}",
+                      :method => :put,
+                      :class => get_like_class(pcomment)
+                  | (#{pcomment.get_likes.size})
+                  span.dot •
+                  -if can? :dislike, pcomment
+                    = link_to 'dislike',
+                      "/dislike/pcomment/#{pcomment.id}",
+                      :method => :put,
+                      :class => get_dislike_class(pcomment)
+                  | (#{pcomment.get_dislikes.size})
+            div.clear
+
         - if !post.nil? and !post.comments_disabled?
-          = render  pcomment.ccomments, :post => post, :pcomment => pcomment
-          = render 'ccomments/form', :post => post, :pcomment => pcomment
-      br
+          ul.posted-comment-childs
+            = render  pcomment.ccomments, :post => post, :pcomment => pcomment
+            = render 'ccomments/form', :post => post, :pcomment => pcomment
+
+

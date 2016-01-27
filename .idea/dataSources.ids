@@ -128,4 +128,7 @@
       <index name="index_votes_on_votable_id_and_votable_type_and_vote_scope" unique="true" columns="votable_id,votable_type,vote_scope"/>
     </table>
   </data-source>
+  <data-source name="Rails blog: test" uuid="f5336b60-e423-4329-b821-3195bb2f0cdc">
+    <database-info product="" version="" jdbc-version="" driver-name="" driver-version=""/>
+  </data-source>
 </component>

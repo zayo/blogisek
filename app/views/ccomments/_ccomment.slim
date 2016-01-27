@@ -1,5 +1,5 @@
-- model_class = Ccomment
-- if can? :read, ccomment
+/- model_class = Ccomment
+/- if can? :read, ccomment
   - unless ccomment.id.nil?
     div class='ccomment'
       p
@@ -27,3 +27,65 @@
         - if can? :destroy, ccomment and !post.nil?
           = link_to t("helpers.links.destroy"), post_pcomment_ccomment_path(post, pcomment, ccomment), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger btn-xs'
       br
+
+- model_class = Ccomment
+- if can? :read, ccomment
+  - unless ccomment.id.nil?
+
+    div.comment-container
+      div.comments-display
+        ul.posted-comments
+          li
+            div.avatar.pull-left
+              - if ccomment.user.nil?
+                img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" border="0" class="ui-corner-all curr-user-photo"
+              - else
+                = image_tag(ccomment.user.avatar.url(:thumb), :class => 'image-30')
+            div.posted-comment-container.pull-left
+              div.posted-comment-head
+                span.posted-comment-title
+                  - if can? :update, ccomment and !ccomment.approved
+                    br
+                    = link_to t("helpers.links.approve"),
+                      "/approvals/ccomment/#{ccomment.id}",
+                      :method => :put,
+                      :class => 'btn btn-default btn-xs'
+                    '
+                    = link_to t("helpers.links.disapprove"),
+                      "/approvals/ccomment/#{ccomment.id}",
+                      :method => :delete,
+                      :class => 'btn btn-danger btn-xs'
+                  = ccomment.name
+              div.posted-comment-body
+                div.posted-comment-txt
+                  = ccomment.message
+              div.posted-comment-foot
+                span.posted-comment-author
+                  - if ccomment.user.nil?
+                    | Anonymous
+                  - else
+                    = ccomment.user.user_name
+                span.dot •
+                span.real-time =ccomment.updated_at.to_datetime.strftime("%d %h %Y %H:%M:%S")
+                - if can? :destroy, ccomment and !post.nil?
+                  span.dot •
+                  span.post-edit
+                    = link_to "delete",
+                      post_pcomment_ccomment_path(post, pcomment, ccomment),
+                      :method => "delete",
+                      :data => { :confirm => 'Are you sure' }
+                  span.dot •
+                  - if can? :like, pcomment
+                    = link_to 'like',
+                      "/like/pcomment/#{ccomment.id}",
+                      :method => :put,
+                      :class => get_like_class(ccomment)
+                  | (#{ccomment.get_likes.size})
+                  span.dot •
+                  -if can? :dislike, ccomment
+                    = link_to 'dislike',
+                      "/dislike/ccomment/#{ccomment.id}",
+                      :method => :put,
+                      :class => get_dislike_class(ccomment)
+                  | (#{ccomment.get_dislikes.size})
+            div.clear

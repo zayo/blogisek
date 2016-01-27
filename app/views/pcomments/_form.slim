@@ -1,12 +1,19 @@
 = form_for ([post, post.pcomments.build]), html: { class: "form form-horizontal pcomment" } do |f|
-  .form-group
+  /.input-group.input-group-sm
     = f.label :name, :class => 'control-label'
     .controls
       = f.text_field :name, :class => 'form-control', :readonly => !current_user.nil?, :value => current_user ? current_user.email : ''
     /= error_span(@pcomment[:name])
+  .form-group
+    .input-group.input-group-sm
+      span.input-group-addon @
+      = f.text_field :name, :type => 'text', :class => 'form-control', :placeholder => 'Username'
   .form-group
     = f.label :message, :class => 'control-label'
     .controls
       = f.text_field :message, :class => 'form-control'
     /= error_span(@pcomment[:message])
   = f.submit 'Save post comment', :class => 'btn btn-primary'
+
+
+

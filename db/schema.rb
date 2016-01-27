@@ -16,6 +16,8 @@ ActiveRecord::Schema.define(version: 20160115215311) do
   create_table "ccomments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
+    t.integer  "likes",       default: 0
+    t.integer  "dislikes",    default: 0
     t.integer  "user_id"
     t.integer  "pcomment_id"
     t.datetime "created_at",                 null: false
@@ -31,6 +33,8 @@ ActiveRecord::Schema.define(version: 20160115215311) do
   create_table "pcomments", force: :cascade do |t|
     t.string   "name"
     t.text     "message"
+    t.integer  "likes",      default: 0
+    t.integer  "dislikes",   default: 0
     t.integer  "user_id"
     t.integer  "post_id"
     t.datetime "created_at",                null: false

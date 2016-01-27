@@ -22,10 +22,7 @@
             = link_to 'edit',
               edit_post_path(post),
               :class => 'btn btn-default btn-xs pull-right'
-
         p = post.description
-
-
 
 .col-sm-3.col-sm-offset-1.blog-sidebar
   - if can? :create, Post

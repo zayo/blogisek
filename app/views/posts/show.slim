@@ -1,22 +1,28 @@
 - model_class = Post
 - if can? :read, @post
-  div class="page-header"
-  h1=t '.title', :default => model_class.model_name.human.titleize
+  .blog-post
+    h2.blog-post-title
+      = @post.title
+    p.blog-post-meta
+      = @post.updated_at.to_datetime.strftime("%d %h %Y %H:%M:%S by ")
+      = @post.user.user_name
+      /= image_tag(post.user.avatar.url(:thumb), :class => 'image-30')
+      = raw tag_links(@post.all_tags)
+      - if can? :destroy, @post
+        = link_to 'destroy',
+          post_path(@post),
+          :method => :delete,
+          :data => { :confirm => 'Are you sure?' },
+          :class => 'btn btn-xs btn-danger pull-right'
+      - if can? :update, @post
+        = link_to 'edit',
+          edit_post_path(@post),
+          :class => 'btn btn-default btn-xs pull-right'
+
+    p = @post.description
 
   p
-    strong= model_class.human_attribute_name(:user) + ':'
-    br
-    = @post.user.user_name
-  p
-    strong= model_class.human_attribute_name(:title) + ':'
-    br
-    = @post.title
-  p
-    strong= model_class.human_attribute_name(:description) + ':'
-    br
-    = @post.description
-  p
-    ' Comments
+    h3 Comments
     - if @post.comments_disabled?
       ' were disabled by author.
     - else
