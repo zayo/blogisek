@@ -28,12 +28,11 @@ html lang="en"
           - unless current_user.nil?
             a.blog-nav-item class=('active' if params['controller'] == 'approvals') href="/approvals"
                 | Approvals
-          .navbar-text
           - if user_signed_in?
             = link_to 'Logout',
                 destroy_user_session_path,
                 method: :delete,
-                :class => 'pull-right blog-nav-item'
+                :class => 'blog-nav-item pull-right'
 
             = link_to image_tag(current_user.avatar.url(:thumb),
                 :class => 'round-image-40'),
@@ -53,5 +52,5 @@ html lang="en"
       p.lead.blog-description Blog vytovořený jako závěrečný projekt pro předmet Ruby na Masarykové univerzitě v Brne.
     .row
       = yield
-    .footer
+    .footer style="bottom : 0; height : 40px; margin-top : 40px;"
       p &copy; urvi <3 nislav 2016

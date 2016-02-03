@@ -1,4 +1,4 @@
-= form_for ([post, pcomment, pcomment.ccomments.build]), html: { class: "form form-horizontal ccomment" } do |f|
+/= form_for ([post, pcomment, pcomment.ccomments.build]), html: { class: "form form-horizontal ccomment" } do |f|
   .form-group
     = f.label :name, :class => 'control-label'
     .controls
@@ -9,4 +9,20 @@
     .controls
       = f.text_field :message, :class => 'form-control'
     /= error_span(@ccomment[:message])
-  = f.submit 'Save comment comment', :class => 'btn btn-primary'
+  = f.submit 'Save comment comment', :class => 'btn btn-primary'a
+
+.posted-comments-postbox
+  .avatar
+    - if current_user.nil?
+      img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" border="0"
+    - else
+      = image_tag(current_user.avatar.url(:thumb), :class => 'image-30')
+  = form_for ([post, pcomment, pcomment.ccomments.build]), html: { class: "form ccomment" } do |f|
+    .form-group
+      .input-group.input-group-sm
+        span.input-group-addon @
+        = f.text_field :name, :type => 'text', :class => 'form-control', :placeholder => 'Username', :readonly => !current_user.nil?, :value => current_user ? current_user.email : ''
+    .form-group
+      .controls
+        = f.text_area :message, :placeholder => 'Message', :class => 'form-control'
+    = f.submit 'Comment', :class => 'btn btn-primary pull-right'

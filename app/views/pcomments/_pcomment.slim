@@ -1,62 +1,62 @@
 - model_class = Pcomment
 - if can? :read, pcomment
   - unless pcomment.id.nil?
-
     div.comment-container
       div.comments-display
         ul.posted-comments
           li
             div.avatar.pull-left
               - if pcomment.user.nil?
-                img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" border="0" class="ui-corner-all curr-user-photo"
+                img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" border="0"
               - else
                 = image_tag(pcomment.user.avatar.url(:thumb), :class => 'image-30')
-            div.posted-comment-container.pull-left
+            div.posted-comment-container
               div.posted-comment-head
                 span.posted-comment-title
                   - if can? :update, pcomment and !pcomment.approved
                     br
-                    = link_to t("helpers.links.approve"),
-                      "/approvals/pcomment/#{pcomment.id}",
-                      :method => :put,
-                      :class => 'btn btn-default btn-xs'
-                    '
-                    = link_to t("helpers.links.disapprove"),
+                    = link_to raw(fa_icon("times", class: "fa-2x")),
                       "/approvals/pcomment/#{pcomment.id}",
                       :method => :delete,
-                      :class => 'btn btn-danger btn-xs'
-                  = pcomment.name
+                      :style => "color:#c9302c",
+                      :class => "pull-right"
+                    '
+                    = link_to raw(fa_icon("check", class: "fa-2x")),
+                      "/approvals/pcomment/#{pcomment.id}",
+                      :method => :put,
+                      :style => "color:#428bca",
+                      :class => "pull-right"
+
+                  - if pcomment.user.nil?
+                    = pcomment.name
+                  - else
+                    = pcomment.user.user_name
+                  span.dot •
+                  span.real-time =pcomment.updated_at.to_datetime.strftime("%d %h %Y %H:%M:%S")
               div.posted-comment-body
                 div.posted-comment-txt
                   = pcomment.message
               div.posted-comment-foot
-                span.posted-comment-author
-                  - if pcomment.user.nil?
-                    | Anonymous
-                  - else
-                    = pcomment.user.user_name
-                span.dot •
-                span.real-time =pcomment.updated_at.to_datetime.strftime("%d %h %Y - %H:%M:%S")
                 - if can? :destroy, pcomment and !post.nil?
-                  span.dot •
                   span.post-edit
-                    = link_to "delete",
+                    = link_to raw(fa_icon("trash", class: "fa-2x")),
                       post_pcomment_path(post, pcomment),
                       :method => "delete",
-                      :data => { :confirm => 'Are you sure' }
+                      :data => { :confirm => 'Are you sure' },
+                      :class => "pull-right"
                   span.dot •
                   - if can? :like, pcomment
-                    = link_to 'like',
+                    = link_to raw(fa_icon("thumbs-up", class: "fa-2x")),
                       "/like/pcomment/#{pcomment.id}",
                       :method => :put,
-                      :class => get_like_class(pcomment)
+                      :style => get_like_class(pcomment)
                   | (#{pcomment.get_likes.size})
                   span.dot •
                   -if can? :dislike, pcomment
-                    = link_to 'dislike',
+                    = link_to raw(fa_icon("thumbs-down", class: "fa-2x")),
                       "/dislike/pcomment/#{pcomment.id}",
                       :method => :put,
-                      :class => get_dislike_class(pcomment)
+                      :style => get_dislike_class(pcomment)
                   | (#{pcomment.get_dislikes.size})
             div.clear
 
@@ -64,5 +64,3 @@
           ul.posted-comment-childs
             = render  pcomment.ccomments, :post => post, :pcomment => pcomment
             = render 'ccomments/form', :post => post, :pcomment => pcomment
-
-

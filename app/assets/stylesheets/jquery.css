@@ -37,6 +37,7 @@
 .comments-display .posted-comments-postbox {
   padding-top:3px;
   border-bottom:2px solid #F0F0F0;
+  margin-left: 40px;
 }
 
 ul.posted-comments {
@@ -50,25 +51,29 @@ ul.posted-comments li {
 }
 
 .avatar img{
-  width:40px;
-  height:40px;
+  width:35px;
+  height:35px;
+  display: block;
+}
+.posted-comments-postbox {
+  overflow: auto
 }
 
-.posted-comments-postbox .avatar{
-
+.posted-comments-postbox .avatar {
+  float: left;
 }
 
 .posted-comments-postbox .form{
-  margin-left: 10px;
+  margin-left: 50px;
   min-width: 85%;
 }
 
-.posted-comments-postbox textarea, .posted-comment-form-edit textarea{
-  min-width:98%;
+.posted-comments-postbox input, .posted-comment-form-edit input{
+  min-width:35px;
 }
 
 .posted-comment-container{
-  margin-left: 10px;
+  margin-left: 40px;
   min-width:85%;
 }
 
@@ -90,14 +95,5 @@ ul.posted-comments li {
 
 ul.posted-comment-childs{
   list-style: none;
-  margin-left:40px;
   padding-top:7px;
 }
-
-ul.posted-comment-childs .avatar img{
-  width:22px;
-  height:22px;
-}
-
-
-

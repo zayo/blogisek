@@ -1,19 +1,19 @@
-= form_for ([post, post.pcomments.build]), html: { class: "form form-horizontal pcomment" } do |f|
-  /.input-group.input-group-sm
-    = f.label :name, :class => 'control-label'
-    .controls
-      = f.text_field :name, :class => 'form-control', :readonly => !current_user.nil?, :value => current_user ? current_user.email : ''
-    /= error_span(@pcomment[:name])
-  .form-group
-    .input-group.input-group-sm
-      span.input-group-addon @
-      = f.text_field :name, :type => 'text', :class => 'form-control', :placeholder => 'Username'
-  .form-group
-    = f.label :message, :class => 'control-label'
-    .controls
-      = f.text_field :message, :class => 'form-control'
-    /= error_span(@pcomment[:message])
-  = f.submit 'Save post comment', :class => 'btn btn-primary'
+.posted-comments-postbox
+  .avatar
+    - if current_user.nil?
+      img src="https://ssl.gstatic.com/accounts/ui/avatar_2x.png" border="0"
+    - else
+      = image_tag(current_user.avatar.url(:thumb), :class => 'image-30')
+  = form_for ([post, post.pcomments.build]), html: { class: "form pcomment" } do |f|
+    .form-group
+      .input-group.input-group-sm
+        span.input-group-addon @
+        = f.text_field :name, :type => 'text', :class => 'form-control', :placeholder => 'Username', :readonly => !current_user.nil?, :value => current_user ? current_user.email : ''
+    .form-group
+      .controls
+        = f.text_area :message, :placeholder => 'Message', :class => 'form-control'
+      /= error_span(@pcomment[:message])
+    = f.submit 'Comment', :class => 'btn btn-primary pull-right'
 
 
 

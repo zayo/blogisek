@@ -7,37 +7,34 @@
       = @post.updated_at.to_datetime.strftime("%d %h %Y %H:%M:%S by ")
       = @post.user.user_name
       /= image_tag(post.user.avatar.url(:thumb), :class => 'image-30')
+      ='
       = raw tag_links(@post.all_tags)
       - if can? :destroy, @post
-        = link_to 'destroy',
-          post_path(@post),
-          :method => :delete,
+        = link_to raw(fa_icon("trash", class: "fa-2x")),
+          post_path(@post), :method => "delete",
           :data => { :confirm => 'Are you sure?' },
-          :class => 'btn btn-xs btn-danger pull-right'
+          :class => 'pull-right'
+        '
       - if can? :update, @post
-        = link_to 'edit',
+        = link_to raw(fa_icon("pencil", class: "fa-2x")),
           edit_post_path(@post),
-          :class => 'btn btn-default btn-xs pull-right'
+          :class => 'pull-right',
+          :style => 'margin-right:5px;'
 
     p = @post.description
 
-  p
-    h3 Comments
     - if @post.comments_disabled?
       ' were disabled by author.
     - else
-      = render 'pcomments/form', :post => @post
-      br
-      = render @post.pcomments, :post => @post
+      .container
+        h3 Comments
+        .comment-container style="margin-left: -40px;"
+          .comments-display
+            = render 'pcomments/form', :post => @post
+            br
+            = render @post.pcomments.reverse, :post => @post
 
 
-  = link_to t('.back', :default => t("helpers.links.back")), posts_path, :class => 'btn btn-default'
-  '
-  - if can? :update, @post
-    = link_to t('.edit', :default => t("helpers.links.edit")), edit_post_path(@post), :class => 'btn btn-default'
-    '
-  - if can? :destroy, @post
-    = link_to t('.destroy', :default => t("helpers.links.destroy")), post_path(@post), :method => "delete", :data => { :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')) }, :class => 'btn btn-danger'
 - else
   h1 You don't have access to view this post...
 

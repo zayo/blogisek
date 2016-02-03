@@ -9,9 +9,9 @@
       = f.text_field :title, :class => 'form-control'
     = error_span(@post[:title])
   .form-group
-    = f.label :description, :class => 'control-label'
+    = f.label :text, :class => 'control-label'
     .controls
-      = f.text_field :description, :class => 'form-control'
+      = f.text_area :description, :class => 'form-control'
     = error_span(@post[:description])
   .form-group
     = f.label :is_private, :class => 'control-label'

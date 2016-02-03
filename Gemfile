@@ -12,6 +12,7 @@ gem 'paperclip', '~> 4.3'
 gem 'slim-rails'
 gem 'twitter-bootstrap-rails'
 gem 'acts_as_votable', '~> 0.10.0'
+gem 'font-awesome-rails'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.5'

@@ -1,17 +1,17 @@
 module PcommentsHelper
   def get_like_class(pcomment)
-    if !current_user.nil? and current_user.voted_as_when_voted_for pcomment
-      'btn btn-info btn-xs'
+    if !current_user.nil? and current_user.voted_up_on? pcomment
+      'color:blue'
     else
-      'btn btn-default btn-xs'
+      'color:gray'
     end
   end
 
   def get_dislike_class(pcomment)
-    if !current_user.nil? and !current_user.voted_as_when_voted_for pcomment
-      'btn btn-info btn-xs'
+    if !current_user.nil? and current_user.voted_down_on? pcomment
+      'color:red'
     else
-      'btn btn-default btn-xs'
+      'color:gray'
     end
   end
 end

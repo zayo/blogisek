@@ -45,7 +45,12 @@ class PostsController < ApplicationController
   end
 
   def all_posts
-    @available_tags = Tag.select('tags.*, count(pt.tag_id) AS cnt').joins('JOIN posts_tags pt ON tags.id = pt.tag_id').group('tags.id').order('cnt DESC')
+    if current_user.nil?
+      @available_tags = Tag.select('tags.*, count(pt.tag_id) AS cnt').joins('JOIN posts_tags pt ON (tags.id = pt.tag_id)').joins('JOIN posts p ON pt.post_id = p.id').where('p.is_private = ?', false).group('tags.id').order('cnt DESC')
+    else
+      @available_tags = Tag.select('tags.*, count(pt.tag_id) AS cnt').joins('JOIN posts_tags pt ON (tags.id = pt.tag_id)').group('tags.id').order('cnt DESC')
+
+    end
 
     if !current_user.nil? and params[:tag]
       @posts = Post.tagged_with(params[:tag])
