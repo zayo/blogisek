@@ -1,21 +1,21 @@
+Blogísek Míši a Níši
+-----------------------------
+This project was created as a final task for Ruby, lectured on Masaryk University Brno.<br />
+Briefly, it is an extended Blog platform.
+
 Authors of this project:
 -----------------------------
-Stanislav Nedbalek (Uco: 374524)
-
+Stanislav Nedbalek (Uco: 374524) <br />
 Michal Navratil (Uco: 448292)
-
-This project was created as a final task for Ruby, lectured on Masaryk University Brno.
-
-Briefly, it is an extended Blog platform, calling Blogísek Míši a Níši.
 
 Url
 ----------
 http://immense-badlands-8590.herokuapp.com/
 
+
 Superuser credentials
 ----------
-login: admin@admin.com
-
+login: admin@admin.com<br />
 passw: adminadmin
 
 ========================================================================================================================
@@ -39,7 +39,7 @@ User:(sign in)
 - Can approve or disapprove comments (Approvals are then shown in waiting comments, or in approval section)
 - Filter by tags (All of them)
 
-Superuser:(too super to be just normal user)
+Superuser:(too super to be just a normal user)
 - Can acts as every user, except add content by their name.
 - He also can't approve/disapprove comment, cause he can delete it instead.
 
