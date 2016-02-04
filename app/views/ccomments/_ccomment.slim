@@ -75,7 +75,7 @@
                   span.dot •
                   - if can? :like, pcomment
                     = link_to raw(fa_icon("thumbs-up", class: "fa-2x")),
-                      "/like/pcomment/#{ccomment.id}",
+                      "/like/ccomment/#{ccomment.id}",
                       :method => :put,
                       :style => get_like_class(ccomment)
                   | (#{ccomment.get_likes.size})
