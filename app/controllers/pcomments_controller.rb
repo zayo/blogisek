@@ -1,4 +1,4 @@
-class PcommentsController < ApplicationController
+class CommentsController < ApplicationController
 
   before_action :set_post, only: [:create, :destroy]
   before_action :set_comment, only: [:destroy, :approve, :disapprove, :like, :dislike]
@@ -20,7 +20,7 @@ class PcommentsController < ApplicationController
       end
 
       approval = !@pcomment.approved ? ' waiting for approval' : ' saved'
-      msg      = @pcomment.save ? 'Pcomment' + approval : 'Unable to save pcomment: ' + @pcomment.errors.full_messages.join('. ')
+      msg      = @pcomment.save ? 'Comment' + approval : 'Unable to save comment: ' + @pcomment.errors.full_messages.join('. ')
       redirect_to post_path(@post), notice: msg
     end
   end
@@ -28,25 +28,25 @@ class PcommentsController < ApplicationController
   def approve
     @pcomment.approved = true
     @pcomment.save
-    redirect_to :back, :notice => 'Pcoment was approved'
+    redirect_to :back, :notice => 'Comment was approved'
   end
 
   def disapprove
     @pcomment.destroy
-    redirect_to :back, :notice => 'Pcoment was deleted'
+    redirect_to :back, :notice => 'Comment was deleted'
   end
 
   def like
     unless current_user.nil?
       current_user.likes @pcomment
-      redirect_to :back, :notice => 'Pcoment was liked'
+      redirect_to :back, :notice => 'Comment was liked'
     end
   end
 
   def dislike
     unless current_user.nil?
       current_user.dislikes @pcomment
-      redirect_to :back, :notice => 'Pcoment was disliked'
+      redirect_to :back, :notice => 'Comment was disliked'
     end
   end
 
@@ -54,7 +54,7 @@ class PcommentsController < ApplicationController
   def destroy
     @pcomment = @post.pcomments.find(params[:id])
     @pcomment.destroy
-    redirect_to post_path(@post), :notice => 'Pcomment was deleted'
+    redirect_to post_path(@post), :notice => 'Comment was deleted'
   end
 
   private
@@ -64,7 +64,7 @@ class PcommentsController < ApplicationController
   end
 
   def set_comment
-    @pcomment = Pcomment.find(params[:id])
+    @pcomment = Comment.find(params[:id])
   end
 
   def post_params

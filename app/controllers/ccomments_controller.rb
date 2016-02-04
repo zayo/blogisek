@@ -1,4 +1,4 @@
-class CcommentsController < ApplicationController
+class CommentsController < ApplicationController
 
   before_action :set_post, only: [:create, :destroy]
   before_action :set_comment, only: [:destroy, :approve, :disapprove, :like, :dislike]
@@ -18,7 +18,7 @@ class CcommentsController < ApplicationController
       end
 
       approval = !@ccomment.approved ? ' waiting for approval' : ' saved'
-      msg      = @ccomment.save ? 'Ccomment' + approval : 'Unable to save Ccomment: ' + @ccomment.errors.full_messages.join('. ')
+      msg      = @ccomment.save ? 'Comment' + approval : 'Unable to save Comment: ' + @ccomment.errors.full_messages.join('. ')
       redirect_to post_path(@post), notice: msg
     end
   end
@@ -27,25 +27,25 @@ class CcommentsController < ApplicationController
     #user approves comment
     @ccomment.approved = true
     @ccomment.save
-    redirect_to :back, :notice => 'Ccomment was approved'
+    redirect_to :back, :notice => 'Comment was approved'
   end
 
   def disapprove
     @ccomment.destroy
-    redirect_to :back, :notice => 'Ccomment was deleted'
+    redirect_to :back, :notice => 'Comment was deleted'
   end
 
   def like
     unless current_user.nil?
       current_user.likes @ccomment
-      redirect_to :back, :notice => 'Ccoment was liked'
+      redirect_to :back, :notice => 'Comment was liked'
     end
   end
 
   def dislike
     unless current_user.nil?
       current_user.dislikes @ccomment
-      redirect_to :back, :notice => 'Ccoment was disliked'
+      redirect_to :back, :notice => 'Comment was disliked'
     end
   end
 
@@ -53,12 +53,12 @@ class CcommentsController < ApplicationController
     @pcomment = @post.pcomments.find(params[:pcomment_id])
     @ccomment = @pcomment.ccomments.find(params[:id])
     @ccomment.destroy
-    redirect_to post_path(@post), :notice => 'Ccomment was deleted'
+    redirect_to post_path(@post), :notice => 'Comment was deleted'
   end
 
   private
   def set_comment
-    @ccomment = Ccomment.find(params[:id])
+    @ccomment = Comment.find(params[:id])
   end
 
   private
