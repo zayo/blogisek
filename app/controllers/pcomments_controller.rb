@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class PcommentsController < ApplicationController
 
   before_action :set_post, only: [:create, :destroy]
   before_action :set_comment, only: [:destroy, :approve, :disapprove, :like, :dislike]
@@ -64,7 +64,7 @@ class CommentsController < ApplicationController
   end
 
   def set_comment
-    @pcomment = Comment.find(params[:id])
+    @pcomment = Pcomment.find(params[:id])
   end
 
   def post_params

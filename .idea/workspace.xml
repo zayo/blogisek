@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="36df316a-28a0-4e0e-b740-e0bda7b3da76" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/blog.iml" afterPath="$PROJECT_DIR$/.idea/blog.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/ccomments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/ccomments_controller.rb" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/controllers/pcomments_controller.rb" afterPath="$PROJECT_DIR$/app/controllers/pcomments_controller.rb" />
     </list>
@@ -81,21 +79,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="pcomments_controller.rb" pinned="false" current-in-tab="false">
+      <file leaf-file-name="pcomments_controller.rb" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/controllers/pcomments_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.226415">
-              <caret line="22" column="73" selection-start-line="22" selection-start-column="73" selection-end-line="22" selection-end-column="73" />
+            <state vertical-scroll-proportion="-0.1092437">
+              <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ccomments_controller.rb" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ccomments_controller.rb" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/controllers/ccomments_controller.rb">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="1.5126051">
-              <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="20" column="73" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
               <folding />
             </state>
           </provider>
@@ -213,8 +211,8 @@
         <option value="$PROJECT_DIR$/app/views/posts/index.slim" />
         <option value="$PROJECT_DIR$/app/views/pcomments/_form.slim" />
         <option value="$PROJECT_DIR$/app/views/ccomments/_ccomment.slim" />
-        <option value="$PROJECT_DIR$/app/controllers/pcomments_controller.rb" />
         <option value="$PROJECT_DIR$/app/controllers/ccomments_controller.rb" />
+        <option value="$PROJECT_DIR$/app/controllers/pcomments_controller.rb" />
       </list>
     </option>
   </component>
@@ -1027,18 +1025,18 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/pcomments_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/ccomments_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.226415">
-          <caret line="22" column="73" selection-start-line="22" selection-start-column="73" selection-end-line="22" selection-end-column="73" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="20" column="73" selection-start-line="20" selection-start-column="73" selection-end-line="20" selection-end-column="73" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/controllers/ccomments_controller.rb">
+    <entry file="file://$PROJECT_DIR$/app/controllers/pcomments_controller.rb">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="1.5126051">
-          <caret line="60" column="24" selection-start-line="60" selection-start-column="24" selection-end-line="60" selection-end-column="24" />
+        <state vertical-scroll-proportion="-0.1092437">
+          <caret line="35" column="42" selection-start-line="35" selection-start-column="42" selection-end-line="35" selection-end-column="42" />
           <folding />
         </state>
       </provider>

@@ -1,4 +1,4 @@
-class CommentsController < ApplicationController
+class CcommentsController < ApplicationController
 
   before_action :set_post, only: [:create, :destroy]
   before_action :set_comment, only: [:destroy, :approve, :disapprove, :like, :dislike]
@@ -18,7 +18,7 @@ class CommentsController < ApplicationController
       end
 
       approval = !@ccomment.approved ? ' waiting for approval' : ' saved'
-      msg      = @ccomment.save ? 'Comment' + approval : 'Unable to save Comment: ' + @ccomment.errors.full_messages.join('. ')
+      msg      = @ccomment.save ? 'Comment' + approval : 'Unable to save comment: ' + @ccomment.errors.full_messages.join('. ')
       redirect_to post_path(@post), notice: msg
     end
   end
@@ -58,7 +58,7 @@ class CommentsController < ApplicationController
 
   private
   def set_comment
-    @ccomment = Comment.find(params[:id])
+    @ccomment = Ccomment.find(params[:id])
   end
 
   private
