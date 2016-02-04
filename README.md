@@ -24,12 +24,12 @@ More complexly
 ------------------
 There are 3 roles, with different abilities:
 
-Guest:(not sign in)
+<b>Guest</b> (not sign in)
 - See some posts
 - Can comment on posts and comments
 - Filter by tags (only tags from not private posts)
 
-User:(sign in)
+<b>User</b> (sign in)
 - Can add new post
 - Can update own posts
 - Can make post private (Guest can't see)
@@ -39,7 +39,7 @@ User:(sign in)
 - Can approve or disapprove comments (Approvals are then shown in waiting comments, or in approval section)
 - Filter by tags (All of them)
 
-Superuser:(too super to be just a normal user)
+<b>Superuser</b> (too super to be just a normal user)
 - Can acts as every user, except add content by their name.
 - He also can't approve/disapprove comment, cause he can delete it instead.
 
