@@ -1,6 +1,7 @@
 Authors of this project:
 -----------------------------
 Stanislav Nedbalek (Uco: 374524)
+
 Michal Navratil (Uco: 448292)
 
 This project was created as a final task for Ruby, lectured on Masaryk University Brno.
@@ -14,6 +15,7 @@ http://immense-badlands-8590.herokuapp.com/
 Superuser credentials
 ----------
 login: admin@admin.com
+
 passw: adminadmin
 
 ========================================================================================================================
