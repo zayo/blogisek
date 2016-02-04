@@ -1,7 +1,7 @@
 Blogísek Míši a Níši
 -----------------------------
 This project was created as a final task for Ruby, lectured on Masaryk University Brno.<br />
-Briefly, it is an extended Blog platform.
+Briefly, it is an extended Blog platform, written in Ruby on Rails
 
 Authors of this project:
 -----------------------------
